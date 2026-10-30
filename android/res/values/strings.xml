@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ad_probe_desc">Subtítulos TV: detecta los anuncios en pantalla (Netflix, Prime, HBO) para pausar los subtítulos. Solo lee el texto de la pantalla en la tele; no envía nada fuera.</string>
+</resources>
