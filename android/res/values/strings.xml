@@ -1,4 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ad_probe_desc">Subtítulos TV: detecta los anuncios en pantalla (Netflix, Prime, HBO) para pausar los subtítulos. Solo lee el texto de la pantalla en la tele; no envía nada fuera.</string>
+    <string name="app_name">Subtítulos TV</string>
+    <string name="listener_label">Subtítulos TV (auto-pause)</string>
+    <string name="step1">1. On your phone, scan the code or open:</string>
+    <string name="step2">2. Find the film or series and tap “Start listening”.</string>
+    <string name="step3">3. Open Prime, HBO… Subtitles will appear on top.</string>
+    <string name="btn_test">Test</string>
+    <string name="btn_notif">Allow auto-pause</string>
+    <string name="toast_test">Use “Test on TV” on your phone</string>
+    <string name="toast_notif">Settings → Apps → Special app access → Notification access → Subtítulos TV</string>
+    <string name="toast_overlay">Overlay permission missing</string>
+    <string name="not_configured">(not configured)</string>
+    <string name="no_overlay_perm">Permission to draw over other apps is missing</string>
+    <string name="status_fmt">Status: %1$s</string>
+    <string name="status_disabled">Status: subtitles disabled</string>
+    <string name="btn_disable">Disable subtitles</string>
+    <string name="btn_enable">Enable subtitles</string>
+    <string name="channel">Subtitles</string>
+    <string name="notif_title">Subtítulos TV active</string>
+    <string name="the_app">The app</string>
+    <string name="off_closed">%1$s closed or went back home</string>
+    <string name="off_content">Content changed in %1$s</string>
+    <string name="off_other">Another app started playing</string>
+    <string name="off_user">Switched off from the phone</string>
+    <string name="st_off">Off</string>
+    <string name="st_off_fmt">Off · %1$s</string>
+    <string name="st_connected_fmt">Connected · %1$s (%2$d lines)</string>
+    <string name="st_ready">Ready · waiting for the phone</string>
+    <string name="st_no_server">Server not configured</string>
+    <string name="st_connecting">Connecting…</string>
+    <string name="st_connected_wait">Connected · waiting for the phone</string>
+    <string name="st_retry_fmt">No connection (%1$s), retrying…</string>
+    <string name="st_server_err_fmt">Server error: %1$s</string>
+    <string name="no_permission">no permission</string>
+    <string name="m_playing">playing</string>
+    <string name="m_paused">paused</string>
+    <string name="m_loading">loading</string>
+    <string name="m_seeking">seeking</string>
+    <string name="m_stopped">stopped</string>
+    <string name="m_error">error</string>
+    <string name="m_none">not playing</string>
+    <string name="m_nothing">no playback</string>
 </resources>
