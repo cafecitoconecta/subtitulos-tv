@@ -40,7 +40,7 @@ adb install SubtitulosTV-0.6.1-beta.apk
 - Móvil y tele hablan directamente en tu red local, protegidos por un código aleatorio que se crea en cada tele. No hay cuentas ni servidores propios.
 
 ## Feedback
-TODO: enlace al formulario / issues de GitHub.
+¿Algo no funciona o tienes una idea? Cuéntanoslo en las [Issues del repositorio](https://github.com/cafecitoconecta/subtitulos-tv/issues).
 
 ## Apoyar el proyecto
 
