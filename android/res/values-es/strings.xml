@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Subtítulos TV</string>
+    <string name="listener_label">Subtítulos TV (pausa automática)</string>
+    <string name="step1">1. En el móvil, escanea el código o abre:</string>
+    <string name="step2">2. Busca la peli o serie y pulsa «Empezar a escuchar».</string>
+    <string name="step3">3. Abre Prime, HBO… Los subtítulos saldrán encima.</string>
+    <string name="btn_test">Probar</string>
+    <string name="btn_notif">Permitir pausa automática</string>
+    <string name="toast_test">Usa «Probar en la tele» en el móvil</string>
+    <string name="toast_notif">Ajustes → Aplicaciones → Aplicaciones con accesos especiales → Acceso a notificaciones → Subtítulos TV</string>
+    <string name="toast_overlay">Falta el permiso de superposición</string>
+    <string name="not_configured">(sin configurar)</string>
+    <string name="no_overlay_perm">Falta el permiso para dibujar encima de otras apps</string>
+    <string name="status_fmt">Estado: %1$s</string>
+    <string name="status_disabled">Estado: subtítulos desactivados</string>
+    <string name="btn_disable">Desactivar subtítulos</string>
+    <string name="btn_enable">Activar subtítulos</string>
+    <string name="channel">Subtítulos</string>
+    <string name="notif_title">Subtítulos TV activo</string>
+    <string name="the_app">La app</string>
+    <string name="off_closed">%1$s se cerró o volvió al inicio</string>
+    <string name="off_content">Contenido cambiado en %1$s</string>
+    <string name="off_other">Otra app empezó a reproducir</string>
+    <string name="off_user">Apagado desde el móvil</string>
+    <string name="st_off">Apagado</string>
+    <string name="st_off_fmt">Apagado · %1$s</string>
+    <string name="st_connected_fmt">Conectado · %1$s (%2$d frases)</string>
+    <string name="st_ready">Listo · esperando al móvil</string>
+    <string name="st_no_server">Falta configurar el servidor</string>
+    <string name="st_connecting">Conectando…</string>
+    <string name="st_connected_wait">Conectado · esperando al móvil</string>
+    <string name="st_retry_fmt">Sin conexión (%1$s), reintentando…</string>
+    <string name="st_server_err_fmt">Error servidor: %1$s</string>
+    <string name="no_permission">sin permiso</string>
+    <string name="m_playing">reproduciendo</string>
+    <string name="m_paused">en pausa</string>
+    <string name="m_loading">cargando</string>
+    <string name="m_seeking">buscando posición</string>
+    <string name="m_stopped">detenido</string>
+    <string name="m_error">error</string>
+    <string name="m_none">sin reproducir</string>
+    <string name="m_nothing">sin reproducción</string>
+</resources>
