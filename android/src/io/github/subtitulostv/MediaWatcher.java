@@ -38,7 +38,7 @@ public class MediaWatcher implements MediaSessionManager.OnActiveSessionsChanged
             LocalServer.log("media watcher on, sessions=" + l.size());
             onActiveSessionsChanged(l);
         } catch (SecurityException e) {
-            access = false; lastError = "sin permiso";
+            access = false; lastError = L.s(R.string.no_permission);
             h.postDelayed(retry, 5000); // user may grant it later
         } catch (Exception e) {
             access = false; lastError = e.getClass().getSimpleName();

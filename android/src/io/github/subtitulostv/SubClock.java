@@ -311,9 +311,9 @@ public final class SubClock {
 
     public static String stateEs(int raw) {
         switch (raw) {
-            case 3: return "reproduciendo"; case 2: return "en pausa"; case 6: case 8: return "cargando";
-            case 4: case 5: case 9: case 10: case 11: return "buscando posición"; case 1: return "detenido";
-            case 7: return "error"; case 0: return "sin reproducir"; default: return "sin reproducción";
+            case 3: return L.s(R.string.m_playing); case 2: return L.s(R.string.m_paused); case 6: case 8: return L.s(R.string.m_loading);
+            case 4: case 5: case 9: case 10: case 11: return L.s(R.string.m_seeking); case 1: return L.s(R.string.m_stopped);
+            case 7: return L.s(R.string.m_error); case 0: return L.s(R.string.m_none); default: return L.s(R.string.m_nothing);
         }
     }
 }

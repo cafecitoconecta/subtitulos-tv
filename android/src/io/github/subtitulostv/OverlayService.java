@@ -15,7 +15,8 @@ import java.net.*;
 /** Draws subtitles on top of every app and keeps them in sync with messages from the relay. */
 public class OverlayService extends Service {
     public static final String ACTION_STOP = "stop";
-    public static volatile String status = "Apagado";
+    public static volatile String status = "";
+    static volatile boolean connectedStatus = false;
     public static volatile boolean running = false;
     // snapshot for /api/status (written on the UI thread)
     public static volatile int cueCount = 0;
@@ -76,7 +77,7 @@ public class OverlayService extends Service {
 
     @Override public IBinder onBind(Intent i) { return null; }
 
-    @Override public int onStartCommand(Intent intent, int flags, int startId) {
+    @Override public int onStartCommand(Intent intent, int flags, int startId) { L.init(this);
         if (intent != null && ACTION_STOP.equals(intent.getAction())) { stopSelf(); return START_NOT_STICKY; }
         startForegroundCompat();
         if (tv == null) addOverlay();
@@ -87,8 +88,8 @@ public class OverlayService extends Service {
 
     private void startForegroundCompat() {
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        nm.createNotificationChannel(new NotificationChannel("subs", "Subtítulos", NotificationManager.IMPORTANCE_LOW));
-        Notification n = new Notification.Builder(this, "subs").setContentTitle("Subtítulos TV activo")
+        nm.createNotificationChannel(new NotificationChannel("subs", getString(R.string.channel), NotificationManager.IMPORTANCE_LOW));
+        Notification n = new Notification.Builder(this, "subs").setContentTitle(getString(R.string.notif_title))
                 .setSmallIcon(android.R.drawable.ic_menu_info_details).build();
         startForeground(1, n);
     }
@@ -183,12 +184,12 @@ public class OverlayService extends Service {
     }
 
     private static String offText(String code, String label) {
-        String app = label == null || label.isEmpty() ? "La app" : label;
+        String app = label == null || label.isEmpty() ? L.s(R.string.the_app) : label;
         switch (code) {
-            case SubClock.OFF_CLOSED: return app + " se cerró o volvió al inicio";
-            case SubClock.OFF_CONTENT: return "Contenido cambiado en " + app;
-            case SubClock.OFF_OTHER: return "Otra app empezó a reproducir";
-            default: return "Apagado desde el móvil";
+            case SubClock.OFF_CLOSED: return L.s(R.string.off_closed, app);
+            case SubClock.OFF_CONTENT: return L.s(R.string.off_content, app);
+            case SubClock.OFF_OTHER: return L.s(R.string.off_other);
+            default: return L.s(R.string.off_user);
         }
     }
 
@@ -206,7 +207,7 @@ public class OverlayService extends Service {
         getSharedPreferences("sync", MODE_PRIVATE).edit().clear().putBoolean("off", true).putString("offCode", clock.offReason)
                 .putString("offText", offText).putLong("offAt", clock.offAt).apply();
         removeOverlay();
-        status = "Apagado · " + offText;
+        status = L.s(R.string.st_off_fmt, offText);
         LocalServer.log("POWER OFF (" + clock.offReason + "): " + offText + " · film, clock, offset, ads and source app wiped");
     }
 
@@ -220,7 +221,7 @@ public class OverlayService extends Service {
         if (sp0.getBoolean("off", false)) { // switched off before the restart: stay off, nothing to restore
             clock.powerOff(sp0.getString("offCode", SubClock.OFF_USER), sp0.getLong("offAt", serverNow()));
             offText = sp0.getString("offText", offText(clock.offReason, ""));
-            status = "Apagado · " + offText; stateNow = "off";
+            status = L.s(R.string.st_off_fmt, offText); stateNow = "off";
             LocalServer.log("restored: switched off (" + offText + ")");
             return;
         }
@@ -254,7 +255,7 @@ public class OverlayService extends Service {
         long[] s = new long[a.length()], e = new long[a.length()]; String[] t = new String[a.length()];
         for (int i = 0; i < a.length(); i++) { JSONObject c = a.getJSONObject(i); s[i] = c.getLong("s"); e[i] = c.getLong("e"); t[i] = c.getString("t"); }
         cs = s; ce = e; ct = t; cueCount = t.length; clock.hasCues = t.length > 0; title = o.optString("title", "");
-        status = "Conectado · " + title + " (" + t.length + " frases)";
+        status = L.s(R.string.st_connected_fmt, title, t.length); connectedStatus = true;
     }
 
     private int find(long p) { // last cue with start <= p, if p < end
@@ -334,7 +335,7 @@ public class OverlayService extends Service {
         String relay0 = cfg.getString("relay", "local");
         if (relay0.isEmpty() || relay0.equals("local")) { // TV is the server (LAN HTTPS)
             serverOffset = 0;
-            status = "Listo · esperando al móvil";
+            status = L.s(R.string.st_ready);
             startedAt = System.currentTimeMillis();
             restoreState();
             clock.autoPause = cfg.getBoolean("autoPause", true); clock.autoSync = cfg.getBoolean("autoSync", false);
@@ -368,22 +369,22 @@ public class OverlayService extends Service {
             while (alive) {
                 SharedPreferences p = getSharedPreferences("cfg", MODE_PRIVATE);
                 String relay = p.getString("relay", ""), token = p.getString("token", "");
-                if (relay.isEmpty()) { status = "Falta configurar el servidor"; sleep(3000); continue; }
+                if (relay.isEmpty()) { status = L.s(R.string.st_no_server); sleep(3000); continue; }
                 HttpURLConnection c = null;
                 try {
-                    status = "Conectando…";
+                    status = L.s(R.string.st_connecting); connectedStatus = false;
                     c = (HttpURLConnection) new URL(relay + "/tv/events?k=" + URLEncoder.encode(token, "UTF-8")).openConnection();
                     c.setConnectTimeout(10000); c.setReadTimeout(35000);
                     c.setRequestProperty("Accept", "text/event-stream");
                     BufferedReader r = new BufferedReader(new InputStreamReader(c.getInputStream(), "UTF-8"), 1 << 16);
-                    if (!status.startsWith("Conectado")) status = "Conectado · esperando al móvil";
+                    if (!connectedStatus) { status = L.s(R.string.st_connected_wait); connectedStatus = true; };
                     backoff = 1000;
                     String line;
                     while (alive && (line = r.readLine()) != null) {
                         if (line.startsWith("data: ")) { final String d = line.substring(6); ui.post(() -> handle(d)); }
                     }
                 } catch (Exception e) {
-                    status = "Sin conexión (" + e.getClass().getSimpleName() + "), reintentando…";
+                    status = L.s(R.string.st_retry_fmt, e.getClass().getSimpleName()); connectedStatus = false;
                 } finally { if (c != null) c.disconnect(); }
                 sleep(backoff); backoff = Math.min(backoff * 2, 10000);
             }
@@ -416,7 +417,7 @@ public class OverlayService extends Service {
     private static void sleep(long ms) { try { Thread.sleep(ms); } catch (InterruptedException ignored) { } }
 
     @Override public void onDestroy() {
-        alive = false; running = false; status = "Apagado"; LocalServer.log("overlay service destroyed");
+        alive = false; running = false; status = L.s(R.string.st_off); LocalServer.log("overlay service destroyed");
         LocalServer.stopAll(); MediaWatcher.stop(); clockRef = null;
         ui.removeCallbacksAndMessages(null);
         removeOverlay();

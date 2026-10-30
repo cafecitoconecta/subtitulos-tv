@@ -33,7 +33,7 @@ public class LocalServer {
     }
     public static synchronized void stopAll() { if (inst != null) { inst.stop(); inst = null; } }
 
-    private LocalServer(Context c, String t, Sink s) { ctx = c; token = t; sink = s; }
+    private LocalServer(Context c, String t, Sink s) { L.init(c); ctx = c; token = t; sink = s; }
     private void stop() { alive = false; try { if (ss != null) ss.close(); } catch (Exception ignored) { } }
 
     private void run() {
@@ -52,7 +52,7 @@ public class LocalServer {
                 new Thread(() -> serve(s)).start();
             }
         } catch (Exception e) {
-            if (alive) OverlayService.status = "Error servidor: " + e.getClass().getSimpleName() + " " + e.getMessage();
+            if (alive) OverlayService.status = L.s(R.string.st_server_err_fmt, e.getClass().getSimpleName() + " " + e.getMessage());
         }
     }
 

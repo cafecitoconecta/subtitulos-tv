@@ -21,24 +21,24 @@ public class MainActivity extends Activity {
     private final Handler h = new Handler(Looper.getMainLooper());
 
     @Override protected void onCreate(Bundle b) {
-        super.onCreate(b);
+        super.onCreate(b); L.init(this);
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.HORIZONTAL);
         root.setBackgroundColor(0xFF121212);
         int pad = 48; root.setPadding(pad * 2, pad, pad * 2, pad);
 
         LinearLayout left = new LinearLayout(this); left.setOrientation(LinearLayout.VERTICAL);
-        TextView title = text("Subtítulos TV", 40, 0xFF78C8FF);
+        TextView title = text(getString(R.string.app_name), 40, 0xFF78C8FF);
         left.addView(title);
-        left.addView(text("1. En el móvil, escanea el código o abre:", 22, 0xFFDDDDDD));
+        left.addView(text(getString(R.string.step1), 22, 0xFFDDDDDD));
         urlTv = text("", 22, 0xFFFFFFFF); left.addView(urlTv);
-        left.addView(text("2. Busca la peli o serie y pulsa «Empezar a escuchar».", 22, 0xFFDDDDDD));
-        left.addView(text("3. Abre Prime, HBO… Los subtítulos saldrán encima.", 22, 0xFFDDDDDD));
+        left.addView(text(getString(R.string.step2), 22, 0xFFDDDDDD));
+        left.addView(text(getString(R.string.step3), 22, 0xFFDDDDDD));
         statusTv = text("", 22, 0xFFFFD060); statusTv.setPadding(0, 24, 0, 24); left.addView(statusTv);
         LinearLayout row = new LinearLayout(this);
         toggle = new Button(this); toggle.setTextSize(22); row.addView(toggle);
-        Button test = new Button(this); test.setText("Probar"); test.setTextSize(22); row.addView(test);
-        notif = new Button(this); notif.setText("Permitir pausa automática"); notif.setTextSize(22); row.addView(notif);
+        Button test = new Button(this); test.setText(R.string.btn_test); test.setTextSize(22); row.addView(test);
+        notif = new Button(this); notif.setText(R.string.btn_notif); notif.setTextSize(22); row.addView(notif);
         left.addView(row);
         root.addView(left, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1));
         qr = new ImageView(this);
@@ -49,10 +49,10 @@ public class MainActivity extends Activity {
             if (OverlayService.running) stopOverlay(); else startOverlay();
             h.postDelayed(this::refresh, 300);
         });
-        test.setOnClickListener(v -> Toast.makeText(this, "Usa «Probar en la tele» en el móvil", Toast.LENGTH_LONG).show());
+        test.setOnClickListener(v -> Toast.makeText(this, getString(R.string.toast_test), Toast.LENGTH_LONG).show());
         notif.setOnClickListener(v -> {
             try { startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")); }
-            catch (Exception e) { Toast.makeText(this, "Ajustes → Aplicaciones → Aplicaciones con accesos especiales → Acceso a notificaciones → Subtítulos TV", Toast.LENGTH_LONG).show(); }
+            catch (Exception e) { Toast.makeText(this, getString(R.string.toast_notif), Toast.LENGTH_LONG).show(); }
         });
         toggle.requestFocus();
         handleIntent(getIntent());
@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
     private void startOverlay() {
         if (!Settings.canDrawOverlays(this)) {
             try { startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()))); }
-            catch (Exception e) { Toast.makeText(this, "Falta el permiso de superposición", Toast.LENGTH_LONG).show(); }
+            catch (Exception e) { Toast.makeText(this, getString(R.string.toast_overlay), Toast.LENGTH_LONG).show(); }
             return;
         }
         getSharedPreferences("cfg", MODE_PRIVATE).edit().putBoolean("enabled", true).apply();
@@ -108,7 +108,7 @@ public class MainActivity extends Activity {
             qr.setImageBitmap(qrBitmap(url));
             return;
         }
-        urlTv.setText(relay.isEmpty() ? "(sin configurar)" : relay + "/?k=" + token);
+        urlTv.setText(relay.isEmpty() ? getString(R.string.not_configured) : relay + "/?k=" + token);
         if (relay.isEmpty()) return;
         new Thread(() -> {
             try (InputStream in = new URL(relay + "/qr.png?k=" + URLEncoder.encode(token, "UTF-8")).openStream()) {
@@ -145,9 +145,9 @@ public class MainActivity extends Activity {
 
     private void refresh() {
         boolean perm = Settings.canDrawOverlays(this);
-        statusTv.setText(!perm ? "Falta el permiso para dibujar encima de otras apps" :
-                OverlayService.running ? "Estado: " + OverlayService.status : "Estado: subtítulos desactivados");
-        toggle.setText(OverlayService.running ? "Desactivar subtítulos" : "Activar subtítulos");
+        statusTv.setText(!perm ? getString(R.string.no_overlay_perm) :
+                OverlayService.running ? getString(R.string.status_fmt, OverlayService.status) : getString(R.string.status_disabled));
+        toggle.setText(OverlayService.running ? getString(R.string.btn_disable) : getString(R.string.btn_enable));
         notif.setVisibility(MediaWatcher.access ? View.GONE : View.VISIBLE);
     }
 
