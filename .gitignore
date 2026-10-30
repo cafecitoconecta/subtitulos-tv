@@ -1,0 +1,9 @@
+android/build/
+android/debug.keystore
+*.jks
+*.keystore
+*.p12
+*.apk
+*.idsig
+*.srt
+*.log
