@@ -42,6 +42,10 @@ adb install SubtitulosTV-0.6.1-beta.apk
 ## Feedback
 TODO: enlace al formulario / issues de GitHub.
 
+## Apoyar el proyecto
+
+La app es gratuita. Si te resulta útil y quieres invitar a un café: [ko-fi.com/cafecitoconecta](https://ko-fi.com/cafecitoconecta) ☕
+
 ## Compilar
 Requiere Android SDK (build-tools 35, platform 34) y JDK: `android/build.sh` (ver variables `KS`, `KS_PASS`, `KS_ALIAS` para firmar).
 
