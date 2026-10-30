@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Subtítulos TV</title>
+<meta name="theme-color" content="#0f1115">
+<meta name="color-scheme" content="dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Subtítulos TV">
+<meta name="application-name" content="Subtítulos TV">
+<link rel="manifest" id="manifestLink" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script>/* the manifest carries the token in start_url, so the home-screen icon opens straight in */
+(function(){var k=new URLSearchParams(location.search).get('k')||localStorage.getItem('k');if(k)document.getElementById('manifestLink').href='manifest.webmanifest?k='+encodeURIComponent(k);})();</script>
+<style>
+  :root{--bg:#0f1115;--card:#191c23;--card2:#22262f;--line:#2c313c;--txt:#f1f3f7;--mut:#9aa3b2;--acc:#4da3ff;--ok:#3ccf7a;--warn:#ffb340;--bad:#ff5d5d;--ad:#e08a1e}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--bg)}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;margin:0 auto;max-width:520px;color:var(--txt);
+       padding:calc(env(safe-area-inset-top) + 8px) 12px calc(env(safe-area-inset-bottom) + 16px)}
+  header{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+  h1{font-size:17px;margin:0;font-weight:700;white-space:nowrap}
+  .hr{display:flex;align-items:center;gap:8px;min-width:0}
+  /* v0.4.4 power button (v0.4.5: inline SVG icon): always visible, like the standby key of a remote */
+  #powerBtn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:6px 12px 6px 8px;border-radius:999px;background:#3a1a1d;color:#ff8a8a;font-size:14px;flex:none;border:1px solid #5a2a2e}
+  #powerBtn .pw{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--bad);color:#fff;font-size:17px;line-height:1}
+  #powerBtn.off{background:var(--card2);color:var(--mut);border-color:var(--line)} #powerBtn.off .pw{background:#3a3f4b;color:var(--mut)}
+  #offBox{display:none;margin-top:10px;padding:10px 12px;border-radius:12px;background:#22171a;color:#ffb3b3;font-size:13.5px;line-height:1.35}
+  #offBox b{color:#fff}
+  .pwi{display:inline-block;vertical-align:-0.15em;flex:none} #powerBtn .pw svg{display:block}
+  #reloadBtn{display:none;margin-top:8px;width:100%;background:var(--acc);color:#04121f}
+  #npChip.off{background:#3a1a1d;color:#ff8a8a}
+  body.pwoff #s2,body.pwoff #adBox,body.pwoff .seek{opacity:.38;filter:grayscale(.6)} body.pwoff #line,body.pwoff #pos{display:none}
+  #ver{text-align:center;font-size:11px;color:#596273;margin-top:6px}
+  #conn{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mut);text-align:right;min-width:0}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--bad);flex:none}
+  .dot.on{background:var(--ok);box-shadow:0 0 8px var(--ok)}
+  .card{background:var(--card);border-radius:18px;padding:14px;margin-bottom:10px}
+  /* now playing */
+  #npTitle{font-size:15px;font-weight:600;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #npTitle b{color:var(--txt)}
+  #npTime{font-size:46px;font-weight:800;letter-spacing:.5px;font-variant-numeric:tabular-nums;line-height:1.1;margin:4px 0 8px}
+  #npTime.dim{color:#5b6372}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:700;padding:5px 10px;border-radius:999px;background:var(--card2);color:var(--mut);white-space:nowrap}
+  #state.locked{background:#143d27;color:var(--ok)} #state.searching{background:#3d3214;color:var(--warn)} #state.lost{background:#3d1717;color:var(--bad)} #state.paused{background:#152c45;color:var(--acc)}
+  #npChip.play{background:#143d27;color:var(--ok)} #npChip.held{background:#152c45;color:var(--acc)} #npChip.ad{background:#4a2f0c;color:var(--warn)} #npChip.stop{background:#3d1717;color:var(--bad)}
+  #offsetTxt{font-variant-numeric:tabular-nums}
+  #line{margin-top:10px;min-height:44px;padding:8px 10px;background:#000;border-radius:10px;font-size:16px;text-align:center;white-space:pre-line;color:#fff;display:flex;align-items:center;justify-content:center}
+  #line:empty::before{content:"—";color:#444}
+  #tvnow{margin-top:8px;font-size:12.5px;line-height:1.35;color:var(--mut)}
+  #tvnow.ok{color:var(--mut);font-weight:400} #tvnow.err{color:var(--bad);font-weight:600}
+  #syncCta{margin-top:10px;width:100%;background:var(--acc);color:#04121f}
+  /* buttons */
+  button,input,select{font:inherit;color:var(--txt)}
+  button{border:0;border-radius:14px;font-weight:700;cursor:pointer;padding:12px;min-height:48px;background:var(--card2);touch-action:manipulation;transition:transform .05s,filter .1s}
+  button:active{transform:scale(.97);filter:brightness(1.25)}
+  button:disabled{opacity:.45}
+  .ctl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
+  .ctl button{min-height:84px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:16px;line-height:1.15}
+  .ctl button .ic{font-size:30px;line-height:1}
+  #pauseBtn{background:#1e3a5c} #pauseBtn.on{background:#2a5f9a}
+  button.adbtn{background:var(--ad);color:#1b1103} button.adbtn.on{background:var(--ok);color:#06210f;animation:pulse 1.6s infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 6px rgba(60,207,122,.25)}}
+  #adInfo{font-size:13px;color:var(--mut);text-align:center;min-height:18px}
+  #adInfo.on{color:var(--warn);font-weight:700} #adInfo.err{color:var(--bad);font-weight:700}
+  #adReset{color:var(--acc);font-size:13px;margin-left:6px}
+  #adBox{margin-bottom:10px}
+  /* seek grid */
+  .seek{padding:10px 12px}
+  .seekrow{display:grid;grid-template-columns:56px repeat(3,1fr);gap:8px;align-items:center}
+  .seekrow+.seekrow{margin-top:8px}
+  .seeklbl{font-size:11.5px;max-width:64px;margin:0 auto;color:var(--mut);line-height:1.15;text-align:center}
+  .seeklbl b{display:block;font-size:20px;color:var(--txt)}
+  button.adj{min-height:50px;font-size:17px;font-variant-numeric:tabular-nums;padding:8px 2px}
+  button.adj.e{background:#1f2d3f} button.adj.l{background:#2f2540}
+  /* collapsible sections */
+  details.card{padding:0;overflow:hidden}
+  details.card>summary{list-style:none;cursor:pointer;padding:14px;font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px;min-height:52px}
+  details.card>summary::-webkit-details-marker{display:none}
+  details.card>summary::after{content:"▾";margin-left:auto;color:var(--mut);transition:transform .2s}
+  details.card[open]>summary::after{transform:rotate(180deg)}
+  .sum2{font-weight:400;font-size:13px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .body{padding:0 14px 14px}
+  input[type=text],input[type=number],input:not([type]),select{width:100%;font-size:16px;padding:12px;border-radius:12px;border:1px solid var(--line);background:#11141a;min-height:48px}
+  .row{display:flex;gap:8px;margin-top:8px}
+  .row>*{flex:1;min-width:0}
+  button.pri{background:var(--acc);color:#04121f;width:100%;margin-top:8px;font-size:17px}
+  button.wide{width:100%;margin-top:8px}
+  button.stop{background:var(--bad);color:#fff}
+  .res{padding:12px;margin-top:8px;background:var(--card2);border-radius:12px;cursor:pointer}
+  .res:active{filter:brightness(1.3)}
+  .res small{color:var(--mut)}
+  #loaded{margin-top:8px;font-size:13px;color:var(--mut)}
+  #loaded div:first-child{color:var(--ok);font-weight:600}
+  .grp{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+  .grp:first-child{border:0;margin-top:0;padding-top:0}
+  .gt{font-size:13px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+  label.sw{display:flex;align-items:center;gap:12px;padding:8px 0;font-size:15px;cursor:pointer}
+  label.sw span{flex:1} label.sw small{display:block;color:var(--mut);font-size:12px}
+  label.sw input{appearance:none;-webkit-appearance:none;width:50px;height:30px;border-radius:999px;background:#3a404c;position:relative;flex:none;margin:0;cursor:pointer;transition:background .2s}
+  label.sw input::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s}
+  label.sw input:checked{background:var(--ok)} label.sw input:checked::after{left:23px}
+  .muted{color:var(--mut);font-size:13px}
+  .err{color:var(--bad);font-weight:600} .ok{color:var(--ok);font-weight:600}
+  #mediaSt{font-size:13px;margin-top:2px}
+  .hint{margin-top:8px;padding:10px;background:#2a2410;border-radius:10px;color:#fd8;font-size:13px;line-height:1.4}
+  #manualMsg{margin:6px 0 0;font-size:13px}
+  #manualBtn{flex:0 0 auto;background:var(--acc);color:#04121f}
+  .lbl{font-size:12px;color:var(--mut);margin:8px 0 4px}
+  .tools{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .tools button{font-size:14px;padding:8px 4px}
+  #heard,#match,#recst{font-size:12px;color:var(--mut);margin-top:4px}
+  #state:empty{display:none}
+  #pos{display:none}
+  #dbg{font-size:11px;color:#555;margin-top:8px}
+  input[type=file]{font-size:13px;color:var(--mut);width:100%}
+  details.up{margin-top:10px} details.up summary{color:var(--mut);font-size:13px;cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+  <h1>🎬 Subtítulos TV</h1>
+  <div class="hr">
+    <span id="conn"><span id="tvdot" class="dot"></span><span id="tvtxt">Tele desconectada</span></span>
+    <button id="powerBtn" title="Apagar: quita los subtítulos y lo borra todo en la tele y en el móvil" aria-label="Apagar"><span class="pw"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7.05 6.05a8 8 0 1 0 9.9 0"/><path d="M12 2.8v8.4"/></svg></span><span class="ptx">Apagar</span></button>
+  </div>
+</header>
+
+<!-- Now playing -->
+<div class="card" id="nowCard">
+  <div id="npTitle">Sin subtítulos · elige qué vas a ver ↓</div>
+  <div id="npTime" class="dim">–:––:––</div>
+  <div class="chips">
+    <span class="chip" id="state"></span>
+    <span class="chip" id="npChip" style="display:none"></span>
+    <span class="chip" id="offsetTxt">Ajuste: 0,00 s</span>
+  </div>
+  <div id="pos"></div>
+  <div id="line"></div>
+  <div id="tvnow"></div>
+  <button id="syncCta" style="display:none">⏱ Poner el tiempo del capítulo</button>
+  <div id="offBox"></div>
+  <button id="reloadBtn">↺ Volver a cargar</button>
+</div>
+
+<!-- Main controls -->
+<div class="ctl" id="s2">
+  <button id="pauseBtn"><span class="ic">⏸</span><span class="tx">Pausa</span></button>
+  <button class="adbtn" id="adBtn"><span class="ic">📺</span><span class="tx">Empieza anuncio</span></button>
+</div>
+<div id="adBox">
+  <div id="adInfo">Al empezar y al acabar los anuncios</div>
+  <div style="text-align:center"><a href="#" id="adReset" style="display:none">↺ Reiniciar tiempo de anuncios</a></div>
+</div>
+
+<!-- Seek -->
+<div class="card seek">
+  <div class="seekrow">
+    <div class="seeklbl"><b>🐢</b>Salen tarde</div>
+    <button class="adj e" id="earlier10" data-adj="10000">−10 s</button>
+    <button class="adj e" id="earlier5" data-adj="5000">−5 s</button>
+    <button class="adj e" id="earlier" data-adj="250">−0,25</button>
+  </div>
+  <div class="seekrow">
+    <div class="seeklbl"><b>🐇</b>Salen pronto</div>
+    <button class="adj l" id="later" data-adj="-250">+0,25</button>
+    <button class="adj l" id="later5" data-adj="-5000">+5 s</button>
+    <button class="adj l" id="later10" data-adj="-10000">+10 s</button>
+  </div>
+</div>
+
+<!-- Search / load -->
+<details class="card" id="s1" open>
+  <summary>🔎 Subtítulos <span class="sum2" id="s1sum"></span></summary>
+  <div class="body">
+    <input id="q" type="text" placeholder="Título (original o en inglés)" enterkeyhint="search">
+    <div class="row">
+      <input id="season" type="number" min="1" placeholder="Temporada" inputmode="numeric">
+      <input id="episode" type="number" min="1" placeholder="Episodio" inputmode="numeric">
+    </div>
+    <button class="pri" id="searchBtn">🔎 Buscar</button>
+    <div id="results"></div>
+    <div id="loaded"></div>
+    <details class="up">
+      <summary>📁 Usar mis propios .srt</summary>
+      <p class="lbl">Español (obligatorio)</p><input id="fSpa" type="file" accept=".srt">
+      <p class="lbl">Idioma original (para sincronizar escuchando)</p><input id="fOrig" type="file" accept=".srt">
+      <button class="wide" id="uploadBtn">Usar estos archivos</button>
+    </details>
+  </div>
+</details>
+
+<!-- Settings -->
+<details class="card" id="s3">
+  <summary>⚙️ Ajustes <span class="sum2" id="s3sum"></span></summary>
+  <div class="body">
+    <div class="grp" id="manualRow" style="display:none">
+      <div class="gt">⏱ Tiempo a mano</div>
+      <div class="muted">Mira el tiempo en la tele, escríbelo con dos puntos (23:15 o 1:05:30), puntos (56.46) o solo números, y pulsa en ese momento.</div>
+      <div class="row"><input id="manualT" placeholder="ej. 23:15 o 1:05:30" inputmode="text" autocomplete="off" enterkeyhint="go"><button id="manualBtn">▶ Empezar aquí</button></div>
+      <p id="manualMsg" class="muted"></p>
+    </div>
+    <div class="grp">
+      <div class="gt">📡 Con la app de la tele</div>
+      <label class="sw"><span>Pausar con la serie<small>Si pausas la película, los subtítulos esperan</small></span><input type="checkbox" id="autoPause" checked></label>
+      <label class="sw"><span>Seguir la posición de la app<small>Experimental · se recoloca al saltar</small></span><input type="checkbox" id="autoSync"></label>
+      <div id="mediaSt" class="muted">Comprobando la tele…</div>
+      <div id="mediaHint" class="hint" style="display:none">
+        Falta un permiso en la tele (<b>una sola vez</b>): abre <b>Subtítulos TV</b> en la tele y pulsa <b>«Permitir pausa automática»</b>, o ve a
+        <b>Ajustes → Aplicaciones → Aplicaciones con accesos especiales → Acceso a notificaciones</b> y activa <b>Subtítulos TV</b>.
+        Sin él todo funciona igual con los botones.
+      </div>
+    </div>
+    <div class="grp">
+      <div class="gt">🌍 Serie</div>
+      <div class="row">
+        <select id="orig" aria-label="Idioma original">
+          <option value="eng|en-US">🇬🇧 Inglés</option>
+          <option value="fre|fr-FR">🇫🇷 Francés</option>
+          <option value="ger|de-DE">🇩🇪 Alemán</option>
+          <option value="ita|it-IT">🇮🇹 Italiano</option>
+          <option value="por|pt-PT">🇵🇹 Portugués</option>
+          <option value="kor|ko-KR">🇰🇷 Coreano</option>
+          <option value="jpn|ja-JP">🇯🇵 Japonés</option>
+          <option value="dan|da-DK">🇩🇰 Danés</option>
+          <option value="swe|sv-SE">🇸🇪 Sueco</option>
+        </select>
+        <select id="service" aria-label="Plataforma">
+          <option value="amazon">Prime Video</option>
+          <option value="hbo">HBO Max</option>
+          <option value="netflix">Netflix</option>
+          <option value="">Otra</option>
+        </select>
+      </div>
+      <div class="muted" style="margin-top:4px">Idioma original y plataforma (para elegir la mejor versión)</div>
+    </div>
+    <div class="grp">
+      <div class="gt">🎤 Sincronizar escuchando</div>
+      <div class="muted">Acerca el móvil a la tele y pulsa durante una escena con diálogo. Escucha unos 20 s y luego apaga el micro.</div>
+      <div class="row"><span class="muted">Idioma del audio</span><select id="srLang"><option value="spa|es-ES">Español (doblaje)</option><option value="orig|">Idioma original (el de arriba)</option></select></div>
+      <button class="wide" id="resyncBtn">🎧 Resincronizar</button>
+      <label class="sw"><span>Ajustar solo al empezar<small>Al arrancar la película escucha hasta acertar (máx. 4 min) y apaga el micro</small></span><input type="checkbox" id="autoMic" checked></label>
+      <div class="row"><span class="muted">Corrección tras escuchar (ms)<small style="display:block">− si salen tarde · + si salen pronto</small></span><input id="avLat" inputmode="numeric" style="width:6em" value="0"></div>
+      <p id="resyncMsg" class="muted"></p>
+      <div style="display:none"><button id="listenBtn" disabled></button><div id="recst"></div><div id="heard"></div><div id="match"></div></div>
+    </div>
+    <div class="grp">
+      <div class="gt">📺 Tele</div>
+      <div class="tools">
+        <button id="hideBtn">🙈 Ocultar</button>
+        <button id="smaller">A−</button>
+        <button id="bigger">A+</button>
+        <button id="testBtn">🧪 Probar</button>
+      </div>
+    </div>
+    <div id="dbg"></div>
+  </div>
+</details>
+<div id="ver"></div>
+<script src="oslib.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
