@@ -86,7 +86,7 @@
     const imdb = q.get('imdb'), orig = q.get('orig') || 'eng', service = q.get('service') || '';
     const [spaList, origList] = await Promise.all([osSearch([['imdbid', imdb], ['sublanguageid', 'spa']]), orig === 'spa' ? [] : osSearch([['imdbid', imdb], ['sublanguageid', orig]])]);
     const spaBest = pickBest(spaList, service);
-    if (!spaBest.length) throw new Error('No hay subtítulos en español para ese título');
+    if (!spaBest.length) throw new Error(typeof tr === 'function' ? tr('No hay subtítulos en español para ese título') : 'No hay subtítulos en español para ese título');
     const sp = spaBest[0], ob = pickBest(origList, service);
     const op = ob.find(s => relKey(s) === relKey(sp)) || ob[0];
     const spa = parseSrt(await downloadSub(sp.SubDownloadLink, sp.SubEncoding));

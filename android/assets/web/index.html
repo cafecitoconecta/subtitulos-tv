@@ -126,6 +126,7 @@
 <header>
   <h1>🎬 Subtítulos TV</h1>
   <div class="hr">
+    <button id="langBtn" type="button" aria-label="Idioma / Language" style="min-height:36px;padding:4px 8px;font-size:12.5px;border-radius:999px;flex:none">🇪🇸 ES / 🇬🇧 EN</button>
     <span id="conn"><span id="tvdot" class="dot"></span><span id="tvtxt">Tele desconectada</span></span>
     <button id="powerBtn" title="Apagar: quita los subtítulos y lo borra todo en la tele y en el móvil" aria-label="Apagar"><span class="pw"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7.05 6.05a8 8 0 1 0 9.9 0"/><path d="M12 2.8v8.4"/></svg></span><span class="ptx">Apagar</span></button>
   </div>
@@ -188,7 +189,7 @@
     <div id="loaded"></div>
     <details class="up">
       <summary>📁 Usar mis propios .srt</summary>
-      <p class="lbl">Español (obligatorio)</p><input id="fSpa" type="file" accept=".srt">
+      <p class="lbl">Subtítulos que salen en la tele (obligatorio)</p><input id="fSpa" type="file" accept=".srt">
       <p class="lbl">Idioma original (para sincronizar escuchando)</p><input id="fOrig" type="file" accept=".srt">
       <button class="wide" id="uploadBtn">Usar estos archivos</button>
     </details>
@@ -242,7 +243,19 @@
     <div class="grp">
       <div class="gt">🎤 Sincronizar escuchando</div>
       <div class="muted">Acerca el móvil a la tele y pulsa durante una escena con diálogo. Escucha unos 20 s y luego apaga el micro.</div>
-      <div class="row"><span class="muted">Idioma del audio</span><select id="srLang"><option value="spa|es-ES">Español (doblaje)</option><option value="orig|">Idioma original (el de arriba)</option></select></div>
+      <div class="row"><span class="muted">Idioma del audio</span><select id="srLang">
+        <option value="spa|es-ES">🇪🇸 Español (España)</option>
+        <option value="spa|en-US">🇺🇸 Inglés (EE. UU.)</option>
+        <option value="spa|en-GB">🇬🇧 Inglés (Reino Unido)</option>
+        <option value="spa|fr-FR">🇫🇷 Francés</option>
+        <option value="spa|de-DE">🇩🇪 Alemán</option>
+        <option value="spa|it-IT">🇮🇹 Italiano</option>
+        <option value="spa|pt-PT">🇵🇹 Portugués (Portugal)</option>
+        <option value="spa|pt-BR">🇧🇷 Portugués (Brasil)</option>
+        <option value="spa|nl-NL">🇳🇱 Neerlandés</option>
+        <option value="orig|">🌍 Idioma original de la serie (el de arriba)</option>
+      </select></div>
+      <div class="muted" style="margin-top:4px">Si eliges un idioma de la lista, se compara con los subtítulos que salen en la tele; «Idioma original» usa la pista original.</div>
       <button class="wide" id="resyncBtn">🎧 Resincronizar</button>
       <label class="sw"><span>Ajustar solo al empezar<small>Al arrancar la película escucha hasta acertar (máx. 4 min) y apaga el micro</small></span><input type="checkbox" id="autoMic" checked></label>
       <div class="row"><span class="muted">Corrección tras escuchar (ms)<small style="display:block">− si salen tarde · + si salen pronto</small></span><input id="avLat" inputmode="numeric" style="width:6em" value="0"></div>

@@ -2,6 +2,260 @@
 // subtitle track, then drives the Spanish subtitle clock on the TV.
 'use strict';
 
+// ---------- i18n (v0.6.2): Spanish / English ----------
+const I18N_EN = {
+"pocas palabras coinciden": "too few words match",
+"no reconocí frases útiles": "no useful phrases recognised",
+"solo una frase dudosa": "only one doubtful phrase",
+"frases contradictorias": "contradictory phrases",
+" · tarde": " · late",
+" · pronto": " · early",
+"❌ La app de la tele no está dibujando (servicio parado). Abre «Subtítulos TV» en la tele y pulsa Iniciar.": "❌ The TV app is not drawing (service stopped). Open “Subtítulos TV” on the TV and press “Enable subtitles”.",
+"Tele: ": "TV: ",
+" frases cargadas, esperando sincronización": " lines loaded, waiting for sync",
+"sin subtítulos cargados": "no subtitles loaded",
+"📺 Anuncio en curso · subtítulos ocultos, siguen en ": "📺 Ad break · subtitles hidden, they resume at ",
+" cuando pulses «Termina anuncio».": " when you tap “Ad ends”.",
+"La app": "The app",
+" cerrado: subtítulos ocultos y parados en ": " closed: subtitles hidden and stopped at ",
+". Vuelven solos al reproducir otra vez en ": ". They come back on their own when you play again in ",
+"la app": "the app",
+" no está reproduciendo: subtítulos ocultos hasta que vuelvas a darle a reproducir.": " is not playing: subtitles hidden until you press play again.",
+"⏸ Tele congelada en ": "⏸ TV frozen at ",
+"💬 Sin diálogo": "💬 No dialogue",
+" · siguiente frase en ": " · next line in ",
+"Tele": "TV",
+"Tele desconectada": "TV disconnected",
+"❌ Sin tele": "❌ No TV",
+"❌ No llego a la tele (": "❌ Can't reach the TV (",
+"). ¿Está encendida, con la app abierta y en la misma wifi?": "). Is it on, with the app open and on the same Wi‑Fi?",
+"Termina anuncio": "Ad ends",
+"Empieza anuncio": "Ad starts",
+"Anuncio en curso (": "Ad break (",
+") · subtítulos ocultos": ") · subtitles hidden",
+"Anuncios: ": "Ads: ",
+", total ": ", total ",
+" (último ": " (last ",
+") · descontados de los subtítulos": ") · subtracted from the subtitles",
+"Pulsa al empezar y al acabar los anuncios": "Tap when the ads start and when they end",
+"❌ No llego a la tele: ": "❌ Can't reach the TV: ",
+"¿Reiniciar el tiempo de anuncios de este capítulo?": "Reset the ad time for this episode?",
+"Pausa automática: falta un permiso en la tele.": "Auto-pause: a permission is missing on the TV.",
+"Pausa automática activa · ninguna app está reproduciendo ahora.": "Auto-pause on · no app is playing right now.",
+" · subtítulos congelados": " · subtitles frozen",
+" · subtítulos ocultos": " · subtitles hidden",
+": cerrado": ": closed",
+" · pausa automática desactivada": " · auto-pause off",
+" · siguiendo la posición de la app": " · following the app's position",
+"Apagado": "Off",
+"📺 Anuncio": "📺 Ad",
+"App": "App",
+" cerrado · subtítulos ocultos": " closed · subtitles hidden",
+" detenido": " stopped",
+"Parado": "Stopped",
+"🙈 Ocultos": "🙈 Hidden",
+"Apagado · carga subtítulos para encender ↓": "Off · load subtitles to switch on ↓",
+"Subtítulos en la tele": "Subtitles on the TV",
+" frases": " lines",
+"Sin subtítulos · elige qué vas a ver ↓": "No subtitles · choose what you'll watch ↓",
+"✔ Sincronizado": "✔ Synced",
+"⏳ Sin sincronizar": "⏳ Not synced",
+"Apagar": "Power off",
+" Subtítulos apagados</b> · ": " Subtitles off</b> · ",
+". No saldrá nada en la tele hasta que cargues subtítulos.": ". Nothing will show on the TV until you load subtitles.",
+"↺ Volver a cargar «": "↺ Reload “",
+"🙈 Ocultar": "🙈 Hide",
+"🎤 Empezar a escuchar": "🎤 Start listening",
+"❌ No llego a la tele para apagarla: ": "❌ Can't reach the TV to switch it off: ",
+" La tele está apagada: carga subtítulos para encender.": " The TV is off: load subtitles to switch on.",
+"Subtítulos TV ": "Subtítulos TV ",
+"<p class=\"muted\">Buscando…</p>": "<p class=\"muted\">Searching…</p>",
+"<p>No he encontrado subtítulos en español. Prueba con el título original o en inglés, o sube un .srt.</p>": "<p>No Spanish subtitles found. Try the original or English title, or upload an .srt.</p>",
+" subtítulos en español": " Spanish subtitles",
+"Descargando subtítulos…": "Downloading subtitles…",
+"Elige el .srt en español": "Choose the subtitles .srt",
+" frases en español": " subtitle lines",
+" en versión original.": " in the original language.",
+". Sin pista original: no se puede sincronizar escuchando.": ". No original track: listening sync is not available.",
+"Versión: ": "Version: ",
+"❌ No he podido mandar los subtítulos a la tele: ": "❌ Couldn't send the subtitles to the TV: ",
+"🔎 Buscando…": "🔎 Searching…",
+"⏸ En pausa": "⏸ Paused",
+"Posición: ": "Position: ",
+"Este navegador no tiene reconocimiento de voz. Usa Chrome.": "This browser has no speech recognition. Use Chrome.",
+"🎤 Escuchando (": "🎤 Listening (",
+" resultados": " results",
+"⚠ Error del micrófono: ": "⚠ Microphone error: ",
+"Chrome no deja usar el micrófono (": "Chrome won't allow the microphone (",
+"). Revisa el permiso del sitio (candado → Permisos → Micrófono).": "). Check the site permission (padlock → Permissions → Microphone).",
+"coincidencia ": "match ",
+" palabras · puntos ": " words · score ",
+" (hace falta 5) · margen ": " (needs 5) · margin ",
+" (hace falta 2)": " (needs 2)",
+"sin coincidencia": "no match",
+" palabras": " words",
+" · corrección ": " · correction ",
+"⏹ Dejar de escuchar": "⏹ Stop listening",
+"Desactivado.": "Disabled.",
+"🎧 Escuchando… ": "🎧 Listening… ",
+"Encontrado en ": "Found at ",
+", ¿saltar? ": ", jump? ",
+"Sí": "Yes",
+"🎧 Escuchando (": "🎧 Listening (",
+"Últimos intentos:\n": "Last attempts:\n",
+"desfase ": "offset ",
+"\n  oído: «": "\n  heard: “",
+"\n  subtítulo: «": "\n  subtitle: “",
+"❌ Carga primero los subtítulos en esta página (🔎 Subtítulos).": "❌ First load the subtitles on this page (🔎 Subtitles).",
+"❌ Este navegador no tiene reconocimiento de voz. Usa Chrome.": "❌ This browser has no speech recognition. Use Chrome.",
+"❌ Para antes «Dejar de escuchar».": "❌ First tap “Stop listening”.",
+"❌ Pon antes el tiempo aproximado («Empezar aquí») o dale a reproducir.": "❌ First set the approximate time (“Start here”) or press play.",
+"❌ No hay pista de subtítulos ": "❌ No subtitle track ",
+"original": "original",
+"en español": "(main)",
+" cargada. Cambia «Idioma del audio».": " loaded. Change “Audio language”.",
+"🎧 Escuchando palabras 20 s (": "🎧 Listening for words 20 s (",
+")… deja el móvil encendido cerca de la tele": ")… keep the phone on and near the TV",
+"Vale, no salto. Tiempo sin cambios.": "OK, not jumping. Time unchanged.",
+"salto rechazado": "jump declined",
+"🤷 No seguro (": "🤷 Not sure (",
+"): dejo el tiempo como estaba. Oído: «": "): keeping the time as it was. Heard: “",
+"nada": "nothing",
+"✔ Ajustado": "✔ Adjusted",
+" frase": " line",
+" coinciden: «": " match: “",
+"❌ Chrome no deja usar el micrófono para reconocer voz. Candado → Permisos → Micrófono.": "❌ Chrome won't allow the microphone for speech recognition. Padlock → Permissions → Microphone.",
+"❌ Error del reconocimiento de voz: ": "❌ Speech recognition error: ",
+"Ajuste automático: no he oído diálogo claro; el micro está apagado. Usa 🎧 Resincronizar si hace falta.": "Auto-adjust: no clear dialogue heard; mic is off. Use 🎧 Resync if needed.",
+"✔ Ajustado al empezar": "✔ Adjusted at start",
+". Micro apagado.": ". Mic off.",
+"🎧 Ajuste automático: sigo escuchando…": "🎧 Auto-adjust: still listening…",
+"🎧 Ajuste automático en espera (pantalla del móvil apagada)…": "🎧 Auto-adjust on hold (phone screen off)…",
+"❌ Ajuste automático sin micro: ": "❌ Auto-adjust without mic: ",
+"❌ No entiendo «": "❌ I don't understand “",
+"». Escribe el tiempo del reproductor con dos puntos, puntos o solo números, p. ej. 23:15, 1:05:30, 56.46 o 10530.": "”. Type the player time with colons, dots or just digits, e.g. 23:15, 1:05:30, 56.46 or 10530.",
+"❌ Primero busca y carga los subtítulos (🔎 Subtítulos).": "❌ First search and load the subtitles (🔎 Subtitles).",
+"Enviando a la tele…": "Sending to the TV…",
+"❌ No llego a la tele. Comprueba que la app está abierta en la tele y recarga esta página.": "❌ Can't reach the TV. Check the app is open on the TV and reload this page.",
+"❌ La tele recibió la orden pero la app no está dibujando. Abre «Subtítulos TV» en la tele y pulsa Iniciar.": "❌ The TV got the command but the app is not drawing. Open “Subtítulos TV” on the TV and press “Enable subtitles”.",
+"❌ La tele no ha arrancado (estado ": "❌ The TV did not start (state ",
+"✔ Listo en ": "✔ Ready at ",
+" está en pausa: los subtítulos arrancan cuando le des a reproducir.": " is paused: subtitles start when you press play.",
+". Los subtítulos salen cuando vuelvas a reproducir en ": ". Subtitles appear when you play again in ",
+"✔ La tele va en ": "✔ TV is at ",
+" y sigue sola aunque bloquees el móvil.": " and keeps going even if you lock the phone.",
+"La tele no tenía los subtítulos; reenviando…": "The TV didn't have the subtitles; resending…",
+"✔ Enviado a la tele (empieza en ": "✔ Sent to the TV (starts at ",
+". Comprueba que la app está abierta en la tele y recarga esta página.": ". Check the app is open on the TV and reload this page.",
+"Seguir": "Resume",
+"Pausa": "Pause",
+"La tele no tiene subtítulos cargados: búscalos en «🔎 Subtítulos».": "The TV has no subtitles loaded: find them in “🔎 Subtitles”.",
+"La tele aún no está sincronizada: pon el tiempo en «Empezar en este tiempo» (⚙️ Ajustes).": "The TV is not synced yet: set the time with “Start here” (⚙️ Settings).",
+"👁 Mostrar": "👁 Show",
+"Prueba: así se verán los subtítulos en la tele.": "Test: this is how subtitles will look on the TV.",
+"<p>Error: ": "<p>Error: ",
+"Error: ": "Error: ",
+"No": "No",
+"🎬 Subtítulos TV": "🎬 Subtítulos TV",
+"Ajuste: 0,00 s": "⇆ 0.00 s",
+"⏱ Poner el tiempo del capítulo": "⏱ Set the episode time",
+"↺ Volver a cargar": "↺ Reload",
+"Al empezar y al acabar los anuncios": "When the ads start and end",
+"↺ Reiniciar tiempo de anuncios": "↺ Reset ad time",
+"Salen tarde": "Too late",
+"Salen pronto": "Too early",
+"🔎 Subtítulos": "🔎 Subtitles",
+"🔎 Buscar": "🔎 Search",
+"📁 Usar mis propios .srt": "📁 Use my own .srt files",
+"Subtítulos que salen en la tele (obligatorio)": "Subtitles shown on the TV (required)",
+"Idioma original (para sincronizar escuchando)": "Original language (for listening sync)",
+"Usar estos archivos": "Use these files",
+"⚙️ Ajustes": "⚙️ Settings",
+"⏱ Tiempo a mano": "⏱ Manual time",
+"Mira el tiempo en la tele, escríbelo con dos puntos (23:15 o 1:05:30), puntos (56.46) o solo números, y pulsa en ese momento.": "Look at the time on the TV, type it with colons (23:15 or 1:05:30), dots (56.46) or just digits, and tap at that moment.",
+"▶ Empezar aquí": "▶ Start here",
+"📡 Con la app de la tele": "📡 With the TV app",
+"Pausar con la serie": "Pause with the show",
+"Si pausas la película, los subtítulos esperan": "If you pause the film, the subtitles wait",
+"Seguir la posición de la app": "Follow the app's position",
+"Experimental · se recoloca al saltar": "Experimental · repositions when you skip",
+"Comprobando la tele…": "Checking the TV…",
+"Falta un permiso en la tele (": "A permission is missing on the TV (",
+"una sola vez": "only once",
+"): abre": "): open",
+"Subtítulos TV": "Subtítulos TV",
+"en la tele y pulsa": "on the TV and press",
+"«Permitir pausa automática»": "“Allow auto-pause”",
+", o ve a": ", or go to",
+"Ajustes → Aplicaciones → Aplicaciones con accesos especiales → Acceso a notificaciones": "Settings → Apps → Special app access → Notification access",
+"y activa": "and enable",
+". Sin él todo funciona igual con los botones.": ". Without it everything still works with the buttons.",
+"🌍 Serie": "🌍 Show",
+"🇬🇧 Inglés": "🇬🇧 English",
+"🇫🇷 Francés": "🇫🇷 French",
+"🇩🇪 Alemán": "🇩🇪 German",
+"🇮🇹 Italiano": "🇮🇹 Italian",
+"🇵🇹 Portugués": "🇵🇹 Portuguese",
+"🇰🇷 Coreano": "🇰🇷 Korean",
+"🇯🇵 Japonés": "🇯🇵 Japanese",
+"🇩🇰 Danés": "🇩🇰 Danish",
+"🇸🇪 Sueco": "🇸🇪 Swedish",
+"Otra": "Other",
+"Idioma original y plataforma (para elegir la mejor versión)": "Original language and platform (to pick the best version)",
+"🎤 Sincronizar escuchando": "🎤 Sync by listening",
+"Acerca el móvil a la tele y pulsa durante una escena con diálogo. Escucha unos 20 s y luego apaga el micro.": "Hold the phone near the TV and tap during a scene with dialogue. It listens for about 20 s and then turns the mic off.",
+"Idioma del audio": "Audio language",
+"🇪🇸 Español (España)": "🇪🇸 Spanish (Spain)",
+"🇺🇸 Inglés (EE. UU.)": "🇺🇸 English (US)",
+"🇬🇧 Inglés (Reino Unido)": "🇬🇧 English (UK)",
+"🇵🇹 Portugués (Portugal)": "🇵🇹 Portuguese (Portugal)",
+"🇧🇷 Portugués (Brasil)": "🇧🇷 Portuguese (Brazil)",
+"🇳🇱 Neerlandés": "🇳🇱 Dutch",
+"🌍 Idioma original de la serie (el de arriba)": "🌍 Original language of the show (set above)",
+"Si eliges un idioma de la lista, se compara con los subtítulos que salen en la tele; «Idioma original» usa la pista original.": "A language from the list is matched against the subtitles shown on the TV; “Original language” uses the original track.",
+"🎧 Resincronizar": "🎧 Resync",
+"Ajustar solo al empezar": "Auto-adjust at start",
+"Al arrancar la película escucha hasta acertar (máx. 4 min) y apaga el micro": "When the film starts it listens until it matches (max. 4 min) and turns the mic off",
+"Corrección tras escuchar (ms)": "Correction after listening (ms)",
+"− si salen tarde · + si salen pronto": "− if too late · + if too early",
+"📺 Tele": "📺 TV",
+"🧪 Probar": "🧪 Test",
+"Apagar: quita los subtítulos y lo borra todo en la tele y en el móvil": "Power off: removes the subtitles and clears everything on the TV and the phone",
+"Título (original o en inglés)": "Title (original or English)",
+"Temporada": "Season",
+"Episodio": "Episode",
+"ej. 23:15 o 1:05:30": "e.g. 23:15 or 1:05:30",
+"Idioma original": "Original language",
+"Plataforma": "Platform"
+};
+I18N_EN['No hay subtítulos en español para ese título'] = 'No Spanish subtitles for that title';
+let LANG = (() => { try { const s = localStorage.getItem('uiLang'); if (s === 'es' || s === 'en') return s; } catch (e) {}
+  return /^es\b/i.test(navigator.language || '') ? 'es' : 'en'; })();
+function tr(s) { return LANG === 'es' ? s : (I18N_EN[s] !== undefined ? I18N_EN[s] : s); }
+const i18nOrig = new WeakMap();
+function i18nApply() {
+  document.documentElement.lang = LANG;
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  for (let n; (n = w.nextNode());) {
+    if (n.parentNode && /^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName)) continue;
+    let o = i18nOrig.get(n); const cur = n.nodeValue;
+    if (o === undefined || (cur !== o.es && cur !== o.en)) { // new or rewritten by the app: only static texts we know
+      const k = cur.replace(/\s+/g, ' ').trim(); if (!k || I18N_EN[k] === undefined) continue;
+      o = { es: cur, en: cur.replace(k, I18N_EN[k]) }; i18nOrig.set(n, o); }
+    n.nodeValue = o[LANG];
+  }
+  document.querySelectorAll('[placeholder],[title],[aria-label]').forEach(el => {
+    for (const a of ['placeholder', 'title', 'aria-label']) { if (!el.hasAttribute(a)) continue;
+      const key = 'i18n' + a.replace('-', ''); if (!el.dataset[key]) el.dataset[key] = el.getAttribute(a);
+      el.setAttribute(a, tr(el.dataset[key])); } });
+  const b = document.getElementById('langBtn');
+  if (b) b.innerHTML = LANG === 'es' ? '🇪🇸 <b>ES</b> / 🇬🇧 EN' : '🇪🇸 ES / 🇬🇧 <b>EN</b>';
+}
+function setLang(l) { LANG = l; try { localStorage.setItem('uiLang', l); } catch (e) {} i18nApply();
+  try { document.dispatchEvent(new Event('langchange')); } catch (e) {} }
+i18nApply();
+{ const b = document.getElementById('langBtn'); if (b) b.onclick = () => setLang(LANG === 'es' ? 'en' : 'es'); }
+
 // ---------- text utils ----------
 function norm(s) {
   return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -267,12 +521,12 @@ function wordResync(m, phrases, clockAt) {
   }
   const good = ests.filter(e => e.matched >= 3 && e.score >= 4 && (e.margin >= 2 || Math.abs(e.off) < 30000 && e.margin >= 1));
   const base = { ests, why: '' };
-  if (!good.length) return Object.assign(base, { ok: false, why: ests.length ? 'pocas palabras coinciden' : 'no reconocí frases útiles' });
+  if (!good.length) return Object.assign(base, { ok: false, why: ests.length ? tr('pocas palabras coinciden') : tr('no reconocí frases útiles') });
   // agreement: largest cluster of offsets within ±1.5 s
   let best = []; for (const g of good) { const c = good.filter(h => Math.abs(h.off - g.off) <= 1500); if (c.length > best.length || c.length === best.length && c.reduce((a, b) => a + b.score, 0) > best.reduce((a, b) => a + b.score, 0)) best = c; }
   const strong = best.length >= 2 || best[0].matched >= 5 && best[0].margin >= 4;
-  if (!strong) return Object.assign(base, { ok: false, why: 'solo una frase dudosa', best: best[0] });
-  if (good.length - best.length > best.length) return Object.assign(base, { ok: false, why: 'frases contradictorias', best: best[0] });
+  if (!strong) return Object.assign(base, { ok: false, why: tr('solo una frase dudosa'), best: best[0] });
+  if (good.length - best.length > best.length) return Object.assign(base, { ok: false, why: tr('frases contradictorias'), best: best[0] });
   const offs = best.map(e => e.off).sort((a, b) => a - b), off = offs[offs.length >> 1];
   const e = best.find(x => x.off === off);
   return Object.assign(base, { ok: true, pos: e.pos, tw: e.tw, off, n: best.length, best: e });
@@ -289,7 +543,7 @@ if (typeof window !== 'undefined') (function () {
   let track = null, matcher = null, syncer = null, rec = null, listening = false, wakeLock = null;
   let userOffset = +(localStorage.getItem('offset') || 0), fontSize = +(localStorage.getItem('fontSize') || 48);
   // Shown with the button sign convention: negative = subtitles earlier (userOffset > 0).
-  const offTxt = () => { const v = -userOffset / 1000; return '⇆ ' + (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toFixed(2).replace('.', ',') + ' s' + (v < 0 ? ' · tarde' : v > 0 ? ' · pronto' : ''); };
+  const offTxt = () => { const v = -userOffset / 1000; return '⇆ ' + (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toFixed(2).replace('.', ',') + ' s' + (v < 0 ? tr(' · tarde') : v > 0 ? tr(' · pronto') : ''); };
   let tvSeenAt = 0, tvHidden = false, lastSent = 0, lastFinalTokens = [], tvLast = null, tvFail = 0;
   // Auto-pause: the TV counts how long the film was paused ("held"); we keep the value we last applied.
   let tvHeld = null, tvEpoch = null, mediaOptsShown = false;
@@ -307,14 +561,14 @@ if (typeof window !== 'undefined') (function () {
   function showTv(s) {
     const el = document.getElementById('tvnow'); if (!el || !s || s.state === undefined) return;
     if (s.power === 'off') { el.className = 'muted'; el.textContent = ''; return; } // the ⏻ box says it all
-    if (!s.overlayAlive) { el.className = 'err'; el.textContent = '❌ La app de la tele no está dibujando (servicio parado). Abre «Subtítulos TV» en la tele y pulsa Iniciar.'; return; }
-    if (s.state !== 'locked') { el.className = 'muted'; el.textContent = 'Tele: ' + (s.cues ? s.cues + ' frases cargadas, esperando sincronización' : 'sin subtítulos cargados'); return; }
-    if (s.hiddenByAd) { el.className = 'muted'; el.textContent = '📺 Anuncio en curso · subtítulos ocultos, siguen en ' + fmt(s.pos) + ' cuando pulses «Termina anuncio».'; return; }
-    if (s.hiddenByMedia && s.media && s.media.srcGone) { el.className = 'muted'; el.textContent = '⏹ ' + (s.media.srcApp || s.media.app || 'La app') + ' cerrado: subtítulos ocultos y parados en ' + fmt(s.pos) + '. Vuelven solos al reproducir otra vez en ' + (s.media.srcApp || s.media.app || 'la app') + '.'; return; }
-    if (s.hiddenByMedia) { el.className = 'muted'; el.textContent = '⏹ ' + (s.media.app || 'La app') + ' no está reproduciendo: subtítulos ocultos hasta que vuelvas a darle a reproducir.'; return; }
-    if (s.media && s.media.autoPause && s.media.kind === 'held') { el.className = 'muted'; el.textContent = '⏸ Tele congelada en ' + fmt(s.pos) + ' (' + s.media.app + ' ' + s.media.state + ')' + (s.text ? ' · «' + s.text.replace(/\n/g, ' ') + '»' : ''); return; }
+    if (!s.overlayAlive) { el.className = 'err'; el.textContent = tr('❌ La app de la tele no está dibujando (servicio parado). Abre «Subtítulos TV» en la tele y pulsa Iniciar.'); return; }
+    if (s.state !== 'locked') { el.className = 'muted'; el.textContent = tr('Tele: ') + (s.cues ? s.cues + tr(' frases cargadas, esperando sincronización') : tr('sin subtítulos cargados')); return; }
+    if (s.hiddenByAd) { el.className = 'muted'; el.textContent = tr('📺 Anuncio en curso · subtítulos ocultos, siguen en ') + fmt(s.pos) + tr(' cuando pulses «Termina anuncio».'); return; }
+    if (s.hiddenByMedia && s.media && s.media.srcGone) { el.className = 'muted'; el.textContent = '⏹ ' + (s.media.srcApp || s.media.app || tr('La app')) + tr(' cerrado: subtítulos ocultos y parados en ') + fmt(s.pos) + tr('. Vuelven solos al reproducir otra vez en ') + (s.media.srcApp || s.media.app || tr('la app')) + '.'; return; }
+    if (s.hiddenByMedia) { el.className = 'muted'; el.textContent = '⏹ ' + (s.media.app || tr('La app')) + tr(' no está reproduciendo: subtítulos ocultos hasta que vuelvas a darle a reproducir.'); return; }
+    if (s.media && s.media.autoPause && s.media.kind === 'held') { el.className = 'muted'; el.textContent = tr('⏸ Tele congelada en ') + fmt(s.pos) + ' (' + s.media.app + ' ' + s.media.state + ')' + (s.text ? ' · «' + s.text.replace(/\n/g, ' ') + '»' : ''); return; }
     el.className = 'ok'; // v0.4: the big time and the subtitle box already show position and text
-    el.textContent = s.text ? '' : '💬 Sin diálogo' + (s.nextIn >= 0 ? ' · siguiente frase en ' + Math.round(s.nextIn / 1000) + ' s' : '');
+    el.textContent = s.text ? '' : tr('💬 Sin diálogo') + (s.nextIn >= 0 ? tr(' · siguiente frase en ') + Math.round(s.nextIn / 1000) + ' s' : '');
   }
 
   const api = (p, opt) => (window.OSLIB && /^\/api\/(search|tracks|upload)/.test(p)) ? window.OSLIB.route(p, opt) : fetch(p + (p.includes('?') ? '&' : '?') + 'k=' + encodeURIComponent(K), opt).then(r => r.json());
@@ -344,8 +598,8 @@ if (typeof window !== 'undefined') (function () {
       if (track && s.power !== 'off' && s.cues !== undefined && s.cues !== track.spa.length) { rlog('tv has ' + s.cues + ' cues, resending ' + track.spa.length); await sendCues(); if (s.state !== 'locked' && s.state !== 'hidden') pushSync(); s = await api('/api/status'); }
       showTv(s); tvLast = s; showNow();
       $('tvdot').className = 'dot' + (s.tvConnected ? ' on' : '');
-      $('tvtxt').textContent = s.tvConnected ? 'Tele' : 'Tele desconectada';
-    } catch (e) { tvFail++; $('tvdot').className = 'dot'; $('tvtxt').textContent = '❌ Sin tele'; $('tvnow').className = 'err'; $('tvnow').textContent = '❌ No llego a la tele (' + (e.message || e) + '). ¿Está encendida, con la app abierta y en la misma wifi?'; showNow(); }
+      $('tvtxt').textContent = s.tvConnected ? tr('Tele') : tr('Tele desconectada');
+    } catch (e) { tvFail++; $('tvdot').className = 'dot'; $('tvtxt').textContent = tr('❌ Sin tele'); $('tvnow').className = 'err'; $('tvnow').textContent = tr('❌ No llego a la tele (') + (e.message || e) + tr('). ¿Está encendida, con la app abierta y en la misma wifi?'); showNow(); }
   }
   setInterval(status, 2000); status();
 
@@ -372,20 +626,20 @@ if (typeof window !== 'undefined') (function () {
   // v0.4 manual "Anuncio" button. The TV owns the state (s.ad); we only mirror it.
   let adTv = null, adSeenAt = 0, adBusy = false;
   const mmss = ms => { const t = Math.max(0, Math.floor(ms / 1000)); return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0'); };
-  const segs = ms => (Math.round(ms / 100) / 10).toLocaleString('es-ES') + ' s';
+  const segs = ms => (Math.round(ms / 100) / 10).toLocaleString(LANG==='es'?'es-ES':'en-GB') + ' s';
   function showAd(s) {
     if (s && s.ad === undefined) { $('adBox').style.display = 'none'; return; } // old TV app
     if (s) { adTv = s.ad; adSeenAt = Date.now(); }
     $('adBox').style.display = '';
     const a = adTv; if (!a) return;
     const btn = $('adBtn'), info = $('adInfo'), rst = $('adReset');
-    setBtn(btn, a.on ? '▶' : '📺', a.on ? 'Termina anuncio' : 'Empieza anuncio');
+    setBtn(btn, a.on ? '▶' : '📺', a.on ? tr('Termina anuncio') : tr('Empieza anuncio'));
     btn.classList.toggle('on', !!a.on); btn.disabled = adBusy;
-    if (a.on) { info.className = 'on'; info.textContent = 'Anuncio en curso (' + mmss(a.elapsed + Date.now() - adSeenAt) + ') · subtítulos ocultos'; rst.style.display = 'none'; return; }
+    if (a.on) { info.className = 'on'; info.textContent = tr('Anuncio en curso (') + mmss(a.elapsed + Date.now() - adSeenAt) + tr(') · subtítulos ocultos'); rst.style.display = 'none'; return; }
     rst.style.display = a.count ? '' : 'none';
     info.className = 'muted';
-    info.textContent = a.count ? 'Anuncios: ' + a.count + ', total ' + segs(a.total) + ' (último ' + segs(a.last) + ') · descontados de los subtítulos'
-      : 'Pulsa al empezar y al acabar los anuncios';
+    info.textContent = a.count ? tr('Anuncios: ') + a.count + tr(', total ') + segs(a.total) + tr(' (último ') + segs(a.last) + tr(') · descontados de los subtítulos')
+      : tr('Pulsa al empezar y al acabar los anuncios');
   }
   setInterval(() => { if (adTv && adTv.on) { showAd(null); showNow(); } }, 500);
   async function adSend(msg) {
@@ -394,28 +648,28 @@ if (typeof window !== 'undefined') (function () {
       const t0 = Date.now(), r = await sendChecked(msg);
       rlog('ad ' + JSON.stringify(msg) + ' -> ' + JSON.stringify(r.ad));
       adBusy = false; applyMedia(r, (t0 + Date.now()) / 2); if (r.state !== undefined) { tvLast = r; tvSeenAt = (t0 + Date.now()) / 2; } showAd(r); showTv(r); showNow();
-    } catch (e) { adBusy = false; showAd(null); $('adInfo').className = 'err'; $('adInfo').textContent = '❌ No llego a la tele: ' + e.message; }
+    } catch (e) { adBusy = false; showAd(null); $('adInfo').className = 'err'; $('adInfo').textContent = tr('❌ No llego a la tele: ') + e.message; }
   }
   $('adBtn').onclick = () => tvOff() ? offNote() : adSend({ type: 'ad', on: !(adTv && adTv.on) });
-  $('adReset').onclick = e => { e.preventDefault(); if (confirm('¿Reiniciar el tiempo de anuncios de este capítulo?')) adSend({ type: 'ad', reset: true }); };
+  $('adReset').onclick = e => { e.preventDefault(); if (confirm(tr('¿Reiniciar el tiempo de anuncios de este capítulo?'))) adSend({ type: 'ad', reset: true }); };
   function showMedia(s) {
     const m = s.media; if (!m) return;
     if (!mediaOptsShown) { $('autoPause').checked = !!m.autoPause; $('autoSync').checked = !!m.autoSync; mediaOptsShown = true; }
     showAd(s);
     const el = $('mediaSt'), hint = $('mediaHint');
     if (!m.access) {
-      el.className = 'muted'; el.textContent = 'Pausa automática: falta un permiso en la tele.';
+      el.className = 'muted'; el.textContent = tr('Pausa automática: falta un permiso en la tele.');
       hint.style.display = ''; return;
     }
     hint.style.display = 'none';
-    if (!m.app) { el.className = 'muted'; el.textContent = 'Pausa automática activa · ninguna app está reproduciendo ahora.'; return; }
+    if (!m.app) { el.className = 'muted'; el.textContent = tr('Pausa automática activa · ninguna app está reproduciendo ahora.'); return; }
     const icon = m.kind === 'playing' ? '▶' : m.kind === 'held' ? '⏸' : m.kind === 'stopped' ? '⏹' : '•';
     let extra = '';
-    if (m.autoPause && s.state === 'locked') extra = m.kind === 'held' ? ' · subtítulos congelados' : m.kind === 'stopped' ? ' · subtítulos ocultos' : '';
-    if (m.srcGone) { el.className = 'muted'; el.textContent = '⏹ ' + (m.srcApp || m.app) + ': cerrado' + (m.autoPause ? ' · subtítulos ocultos' : ' · pausa automática desactivada'); return; }
-    if (!m.autoPause) extra = ' · pausa automática desactivada';
+    if (m.autoPause && s.state === 'locked') extra = m.kind === 'held' ? tr(' · subtítulos congelados') : m.kind === 'stopped' ? tr(' · subtítulos ocultos') : '';
+    if (m.srcGone) { el.className = 'muted'; el.textContent = '⏹ ' + (m.srcApp || m.app) + tr(': cerrado') + (m.autoPause ? tr(' · subtítulos ocultos') : tr(' · pausa automática desactivada')); return; }
+    if (!m.autoPause) extra = tr(' · pausa automática desactivada');
     el.className = m.kind === 'playing' ? 'ok' : 'muted';
-    el.textContent = icon + ' ' + m.app + ': ' + m.state + extra + (s.anchor === 'media' ? ' · siguiendo la posición de la app' : '');
+    el.textContent = icon + ' ' + m.app + ': ' + m.state + extra + (s.anchor === 'media' ? tr(' · siguiendo la posición de la app') : '');
   }
   $('offsetTxt').textContent = offTxt();
   function setBtn(b, ic, tx) { b.querySelector('.ic').textContent = ic; b.querySelector('.tx').textContent = tx; }
@@ -436,31 +690,31 @@ if (typeof window !== 'undefined') (function () {
     const chip = $('npChip'); let cls = '', txt = '';
     const m = s && s.media, off = !!(s && s.power === 'off');
     showPower(s);
-    if (off) { cls = 'off'; txt = 'Apagado'; }
-    else if (adOn) { cls = 'ad'; txt = '📺 Anuncio' + (adTv && adTv.on ? ' ' + mmss(adTv.elapsed + now - adSeenAt) : ''); }
-    else if (s && s.hiddenByMedia) { cls = 'stop'; const app = m.srcApp || m.app; txt = m.srcGone ? '⏹ ' + (app || 'App') + ' cerrado · subtítulos ocultos' : '⏹ ' + (app ? app + ' detenido' : 'Parado') + ' · subtítulos ocultos'; }
+    if (off) { cls = 'off'; txt = tr('Apagado'); }
+    else if (adOn) { cls = 'ad'; txt = tr('📺 Anuncio') + (adTv && adTv.on ? ' ' + mmss(adTv.elapsed + now - adSeenAt) : ''); }
+    else if (s && s.hiddenByMedia) { cls = 'stop'; const app = m.srcApp || m.app; txt = m.srcGone ? '⏹ ' + (app || tr('App')) + tr(' cerrado · subtítulos ocultos') : '⏹ ' + (app ? app + tr(' detenido') : tr('Parado')) + tr(' · subtítulos ocultos'); }
     else if (m && m.app) { cls = m.kind === 'playing' ? 'play' : m.kind === 'held' ? 'held' : 'stop'; txt = (m.kind === 'playing' ? '▶ ' : m.kind === 'held' ? '⏸ ' : '⏹ ') + m.app; }
-    else if (tvHidden) { cls = 'held'; txt = '🙈 Ocultos'; }
+    else if (tvHidden) { cls = 'held'; txt = tr('🙈 Ocultos'); }
     chip.className = 'chip ' + cls; chip.textContent = txt; if (off) chip.insertAdjacentHTML('afterbegin', PWR + ' '); chip.style.display = txt ? '' : 'none';
     showPause();
     if (!track) { const tt = $('npTitle'); // page reopened: show what the TV already has
-      if (off) tt.textContent = 'Apagado · carga subtítulos para encender ↓';
-      else if (s && s.cues) { $('manualRow').style.display = ''; tt.innerHTML = ''; const b = document.createElement('b'); b.textContent = s.title || 'Subtítulos en la tele'; tt.appendChild(b); tt.appendChild(document.createTextNode(' · ' + s.cues + ' frases')); }
-      else tt.textContent = 'Sin subtítulos · elige qué vas a ver ↓'; }
-    if (!syncer) { $('line').textContent = tvLocked && !adOn && !(s && s.hiddenByMedia) ? (s.text || '') : ''; const st = $('state'); st.className = 'chip ' + (tvLocked ? 'locked' : 'searching'); st.textContent = tvLocked ? '✔ Sincronizado' : '⏳ Sin sincronizar'; st.style.display = off ? 'none' : ''; }
+      if (off) tt.textContent = tr('Apagado · carga subtítulos para encender ↓');
+      else if (s && s.cues) { $('manualRow').style.display = ''; tt.innerHTML = ''; const b = document.createElement('b'); b.textContent = s.title || tr('Subtítulos en la tele'); tt.appendChild(b); tt.appendChild(document.createTextNode(' · ' + s.cues + tr(' frases'))); }
+      else tt.textContent = tr('Sin subtítulos · elige qué vas a ver ↓'); }
+    if (!syncer) { $('line').textContent = tvLocked && !adOn && !(s && s.hiddenByMedia) ? (s.text || '') : ''; const st = $('state'); st.className = 'chip ' + (tvLocked ? 'locked' : 'searching'); st.textContent = tvLocked ? tr('✔ Sincronizado') : tr('⏳ Sin sincronizar'); st.style.display = off ? 'none' : ''; }
     else $('state').style.display = '';
     $('syncCta').style.display = track && !tvLocked && !phoneLocked && !$('s3').open ? '' : 'none';
   }
   // ---------- v0.4.4 ⏻ power ----------
   function showPower(s) {
     const off = !!(s && s.power === 'off'), box = $('offBox'), rb = $('reloadBtn'), pb = $('powerBtn');
-    pb.classList.toggle('off', off); document.body.classList.toggle('pwoff', off); pb.querySelector('.ptx').textContent = off ? 'Apagado' : 'Apagar';
+    pb.classList.toggle('off', off); document.body.classList.toggle('pwoff', off); pb.querySelector('.ptx').textContent = off ? tr('Apagado') : tr('Apagar');
     if (!off) { box.style.display = 'none'; rb.style.display = 'none'; return; }
     box.style.display = 'block';
-    box.innerHTML = '<b>' + PWR + ' Subtítulos apagados</b> · ';
-    box.appendChild(document.createTextNode((s.offReason || 'Apagado') + '. No saldrá nada en la tele hasta que cargues subtítulos.'));
+    box.innerHTML = '<b>' + PWR + tr(' Subtítulos apagados</b> · ');
+    box.appendChild(document.createTextNode((s.offReason || tr('Apagado')) + tr('. No saldrá nada en la tele hasta que cargues subtítulos.')));
     rb.style.display = lastTrack ? 'block' : 'none';
-    if (lastTrack) rb.textContent = '↺ Volver a cargar «' + lastTrack.title + '»';
+    if (lastTrack) rb.textContent = tr('↺ Volver a cargar «') + lastTrack.title + '»';
   }
   // Everything on the phone back to zero (track, clock, offset, pause, ads mirror, mic). Keeps the token and the text size.
   function resetPhone() {
@@ -468,24 +722,24 @@ if (typeof window !== 'undefined') (function () {
     if (syncer) syncer.onChange = () => {};
     track = null; matcher = null; syncer = null; lastTrack = null; myGen = null; localStorage.removeItem('lastTrack');
     userOffset = 0; localStorage.removeItem('offset'); $('offsetTxt').textContent = offTxt();
-    tvHidden = false; $('hideBtn').textContent = '🙈 Ocultar'; tvPausedPos = null; tvHeld = null; tvEpoch = null; adTv = null;
+    tvHidden = false; $('hideBtn').textContent = tr('🙈 Ocultar'); tvPausedPos = null; tvHeld = null; tvEpoch = null; adTv = null;
     $('manualT').value = ''; $('manualMsg').textContent = ''; $('manualMsg').className = 'muted'; $('manualRow').style.display = 'none';
     $('fSpa').value = ''; $('fOrig').value = ''; $('results').innerHTML = ''; $('loaded').textContent = ''; $('s1sum').textContent = ''; $('s1').open = true;
     ['heard', 'match', 'dbg', 'recst', 'pos', 'line'].forEach(id => { $(id).textContent = ''; });
-    $('listenBtn').textContent = '🎤 Empezar a escuchar'; $('listenBtn').classList.remove('stop'); $('listenBtn').disabled = true;
-    $('npTitle').textContent = 'Sin subtítulos · elige qué vas a ver ↓';
+    $('listenBtn').textContent = tr('🎤 Empezar a escuchar'); $('listenBtn').classList.remove('stop'); $('listenBtn').disabled = true;
+    $('npTitle').textContent = tr('Sin subtítulos · elige qué vas a ver ↓');
     showNow();
   }
   $('powerBtn').onclick = async () => {
     rlog('⏻ power off from the phone');
     resetPhone();
     try { const r = await sendChecked({ type: 'power', on: false }); if (r && r.state !== undefined) { tvLast = r; tvSeenAt = Date.now(); } }
-    catch (e) { $('tvnow').className = 'err'; $('tvnow').textContent = '❌ No llego a la tele para apagarla: ' + e.message; }
+    catch (e) { $('tvnow').className = 'err'; $('tvnow').textContent = tr('❌ No llego a la tele para apagarla: ') + e.message; }
     showNow(); showTv(tvLast);
   };
   $('reloadBtn').onclick = () => { const t = lastTrack; if (t) { rlog('reload after auto-off ' + t.title); useTrack(t); } };
-  const offNote = el => { el = el || $('tvnow'); el.className = 'err'; el.innerHTML = PWR + ' La tele está apagada: carga subtítulos para encender.'; };
-  $('ver').textContent = 'Subtítulos TV ' + VERSION;
+  const offNote = el => { el = el || $('tvnow'); el.className = 'err'; el.innerHTML = PWR + tr(' La tele está apagada: carga subtítulos para encender.'); };
+  $('ver').textContent = tr('Subtítulos TV ') + VERSION;
   $('syncCta').onclick = () => {
     $('s3').open = true; $('manualRow').style.display = '';
     $('manualRow').scrollIntoView({ behavior: 'smooth', block: 'center' }); showNow(); // no focus(): don't pop the keyboard
@@ -494,37 +748,37 @@ if (typeof window !== 'undefined') (function () {
 
   $('searchBtn').onclick = async () => {
     const q = $('q').value.trim(); if (!q) return;
-    $('results').innerHTML = '<p class="muted">Buscando…</p>';
+    $('results').innerHTML = tr('<p class="muted">Buscando…</p>');
     const p = new URLSearchParams({ q, season: $('season').value, episode: $('episode').value });
     const d = await api('/api/search?' + p).catch(e => ({ error: e.message }));
-    if (d.error) { $('results').innerHTML = '<p>Error: ' + d.error + '</p>'; return; }
-    if (!d.results.length) { $('results').innerHTML = '<p>No he encontrado subtítulos en español. Prueba con el título original o en inglés, o sube un .srt.</p>'; return; }
+    if (d.error) { $('results').innerHTML = tr('<p>Error: ') + d.error + '</p>'; return; }
+    if (!d.results.length) { $('results').innerHTML = tr('<p>No he encontrado subtítulos en español. Prueba con el título original o en inglés, o sube un .srt.</p>'); return; }
     $('results').innerHTML = '';
     for (const r of d.results) {
       const div = document.createElement('div'); div.className = 'res';
       div.innerHTML = `<b></b><br><small></small>`;
       div.querySelector('b').textContent = r.name + (r.year ? ` (${r.year})` : '');
-      div.querySelector('small').textContent = (r.kind === 'episode' ? `T${r.season} E${r.episode} · ` : '') + `${r.count} subtítulos en español`;
+      div.querySelector('small').textContent = (r.kind === 'episode' ? (LANG==='es'?`T${r.season} E${r.episode} · `:`S${r.season} E${r.episode} · `) : '') + `${r.count}${tr(' subtítulos en español')}`;
       div.onclick = () => loadTracks(r);
       $('results').appendChild(div);
     }
   };
 
   async function loadTracks(r) {
-    $('loaded').textContent = 'Descargando subtítulos…';
+    $('loaded').textContent = tr('Descargando subtítulos…');
     const [orig] = $('orig').value.split('|');
     const p = new URLSearchParams({ imdb: r.imdb, orig, service: $('service').value });
     const d = await api('/api/tracks?' + p).catch(e => ({ error: e.message }));
-    if (d.error) { $('loaded').textContent = 'Error: ' + d.error; return; }
+    if (d.error) { $('loaded').textContent = tr('Error: ') + d.error; return; }
     useTrack(d);
   }
 
   $('uploadBtn').onclick = async () => {
     const f1 = $('fSpa').files[0], f2 = $('fOrig').files[0];
-    if (!f1) { alert('Elige el .srt en español'); return; }
+    if (!f1) { alert(tr('Elige el .srt en español')); return; }
     const body = { title: f1.name, spa: await f1.text(), orig: f2 ? await f2.text() : '' };
     const d = await api('/api/upload', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    if (d.error) { $('loaded').textContent = 'Error: ' + d.error; return; }
+    if (d.error) { $('loaded').textContent = tr('Error: ') + d.error; return; }
     useTrack(d);
   };
 
@@ -534,14 +788,14 @@ if (typeof window !== 'undefined') (function () {
     const hasOrig = d.orig && d.orig.length > 20;
     $('loaded').innerHTML = '';
     const b = document.createElement('div');
-    b.textContent = `✔ ${d.title} — ${d.spa.length} frases en español` + (hasOrig ? `, ${d.orig.length} en versión original.` : '. Sin pista original: no se puede sincronizar escuchando.');
+    b.textContent = `✔ ${d.title} — ${d.spa.length}${tr(' frases en español')}` + (hasOrig ? `, ${d.orig.length}${tr(' en versión original.')}` : tr('. Sin pista original: no se puede sincronizar escuchando.'));
     $('loaded').appendChild(b);
-    if (d.spaRelease) { const s = document.createElement('div'); s.textContent = 'Versión: ' + d.spaRelease; $('loaded').appendChild(s); }
+    if (d.spaRelease) { const s = document.createElement('div'); s.textContent = tr('Versión: ') + d.spaRelease; $('loaded').appendChild(s); }
     matcher = hasOrig ? new Matcher(d.orig) : null;
     if (syncer) syncer.onChange = () => {};
     syncer = new Syncer(matcher || new Matcher(d.spa), d.orig && d.orig.length ? d.orig : d.spa);
     if (syncer) syncer.onChange = (st) => { rlog('state ' + st + ' pos=' + fmt(syncer.pos(Date.now()))); pushSync(); render(); };
-    if (!quiet) sendCues(true).then(r => { rlog('tv cues ok ' + r.cues + ' gen=' + r.gen); if (r && r.state !== undefined) { tvLast = r; tvSeenAt = Date.now(); showNow(); } }).catch(e => { $('manualMsg').className = 'err'; $('manualMsg').textContent = '❌ No he podido mandar los subtítulos a la tele: ' + e.message; });
+    if (!quiet) sendCues(true).then(r => { rlog('tv cues ok ' + r.cues + ' gen=' + r.gen); if (r && r.state !== undefined) { tvLast = r; tvSeenAt = Date.now(); showNow(); } }).catch(e => { $('manualMsg').className = 'err'; $('manualMsg').textContent = tr('❌ No he podido mandar los subtítulos a la tele: ') + e.message; });
     rlog('track ' + d.title + ' spa=' + d.spa.length + ' orig=' + (d.orig ? d.orig.length : 0) + ' align=' + JSON.stringify(d.align) + ' rel=' + d.spaRelease + ' / ' + d.origRelease);
     $('manualRow').style.display = '';
     $('listenBtn').disabled = !matcher;
@@ -570,13 +824,13 @@ if (typeof window !== 'undefined') (function () {
   function render() {
     if (!syncer) return;
     const now = Date.now();
-    const labels = { locked: '✔ Sincronizado', searching: '🔎 Buscando…' };
+    const labels = { locked: tr('✔ Sincronizado'), searching: tr('🔎 Buscando…') };
     const tvLocked = !!(tvLast && tvLast.state === 'locked');
     const idle = !listening && syncer.state !== 'locked';
     $('state').className = 'chip ' + (syncer.paused ? 'paused' : idle && tvLocked ? 'locked' : syncer.state);
-    $('state').textContent = syncer.paused ? '⏸ En pausa' : idle ? (tvLocked ? '✔ Sincronizado' : '⏳ Sin sincronizar') : labels[syncer.state];
+    $('state').textContent = syncer.paused ? tr('⏸ En pausa') : idle ? (tvLocked ? tr('✔ Sincronizado') : tr('⏳ Sin sincronizar')) : labels[syncer.state];
     const p = syncer.pos(now) + userOffset;
-    $('pos').textContent = syncer.state === 'locked' ? 'Posición: ' + fmt(p) : '';
+    $('pos').textContent = syncer.state === 'locked' ? tr('Posición: ') + fmt(p) : '';
     $('line').textContent = syncer.state === 'locked' && !syncer.paused ? currentLine(p) : '';
   }
   setInterval(() => {
@@ -590,10 +844,10 @@ if (typeof window !== 'undefined') (function () {
   // ---------- speech ----------
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   function startRec() {
-    if (!SR) { alert('Este navegador no tiene reconocimiento de voz. Usa Chrome.'); return; }
+    if (!SR) { alert(tr('Este navegador no tiene reconocimiento de voz. Usa Chrome.')); return; }
     rec = new SR();
     rec.lang = $('orig').value.split('|')[1];
-    rec.onstart = () => { recState('🎤 Escuchando (' + rec.lang + ')'); rlog('rec start ' + rec.lang); };
+    rec.onstart = () => { recState(tr('🎤 Escuchando (') + rec.lang + ')'); rlog('rec start ' + rec.lang); };
     rec.onaudiostart = () => rlog('rec audio start');
     rec.continuous = true; rec.interimResults = true; rec.maxAlternatives = 1;
     rec.onresult = ev => {
@@ -605,36 +859,36 @@ if (typeof window !== 'undefined') (function () {
         const out = syncer.feed(T, res.isFinal, now);
         if (out && (out.kind === 'confirm' || out.kind === 'lock')) pushSync();
         if (res.isFinal) { lastFinalTokens = tokens(text); nFinal++; rlog('heard[' + syncer.state + '] ' + text + ' | ' + scoreTxt(T)); }
-        nResults++; recState('🎤 Escuchando (' + rec.lang + ') · ' + nResults + ' resultados');
+        nResults++; recState(tr('🎤 Escuchando (') + rec.lang + ') · ' + nResults + tr(' resultados'));
         dbg(out, T);
       }
     };
-    rec.onerror = e => { recState('⚠ Error del micrófono: ' + e.error); rlog('rec error ' + e.error + ' ' + (e.message || ''));
-      if (e.error === 'not-allowed' || e.error === 'service-not-allowed') { alert('Chrome no deja usar el micrófono (' + e.error + '). Revisa el permiso del sitio (candado → Permisos → Micrófono).'); stopListening(); } };
+    rec.onerror = e => { recState(tr('⚠ Error del micrófono: ') + e.error); rlog('rec error ' + e.error + ' ' + (e.message || ''));
+      if (e.error === 'not-allowed' || e.error === 'service-not-allowed') { alert(tr('Chrome no deja usar el micrófono (') + e.error + tr('). Revisa el permiso del sitio (candado → Permisos → Micrófono).')); stopListening(); } };
     rec.onend = () => { if (listening) setTimeout(() => { try { rec.start(); } catch (e) { rlog('restart fail ' + e.message); } }, 250); };
     rec.start();
   }
   let nResults = 0, nFinal = 0;
   function scoreTxt(T) {
     const r = matcher && matcher.match(T, syncer && syncer.state === 'locked' ? syncer.pos(Date.now()) : null);
-    return r ? `coincidencia ${r.matched}/${r.n} palabras · puntos ${r.score.toFixed(1)} (hace falta 5) · margen ${r.margin.toFixed(1)} (hace falta 2)` : 'sin coincidencia';
+    return r ? `${tr('coincidencia ')}${r.matched}/${r.n}${tr(' palabras · puntos ')}${r.score.toFixed(1)}${tr(' (hace falta 5) · margen ')}${r.margin.toFixed(1)}${tr(' (hace falta 2)')}` : tr('sin coincidencia');
   }
   function dbg(out, T) {
     $('match').textContent = scoreTxt(T);
     if (!out) return;
-    $('dbg').textContent = `${out.kind} · ${out.r.matched}/${out.r.n} palabras` + (out.delta != null ? ` · corrección ${Math.round(out.delta)} ms` : '');
+    $('dbg').textContent = `${out.kind} · ${out.r.matched}/${out.r.n}${tr(' palabras')}` + (out.delta != null ? `${tr(' · corrección ')}${Math.round(out.delta)} ms` : '');
   }
   async function startListening() {
     listening = true; startRec();
     try { wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {}
-    $('listenBtn').textContent = '⏹ Dejar de escuchar'; $('listenBtn').classList.add('stop');
+    $('listenBtn').textContent = tr('⏹ Dejar de escuchar'); $('listenBtn').classList.add('stop');
     render();
   }
   function stopListening() {
     listening = false; try { rec && rec.stop(); } catch (e) {}
     if (wakeLock) wakeLock.release().catch(() => {}); wakeLock = null;
     if (syncer && !syncer.manual) { syncer.lose(Date.now()); send({ type: 'sync', state: 'stopped', pos: 0, at: serverNow() }); }
-    $('listenBtn').textContent = '🎤 Empezar a escuchar'; $('listenBtn').classList.remove('stop');
+    $('listenBtn').textContent = tr('🎤 Empezar a escuchar'); $('listenBtn').classList.remove('stop');
     render();
   }
   document.addEventListener('visibilitychange', async () => {
@@ -646,7 +900,7 @@ if (typeof window !== 'undefined') (function () {
   $('avLat').value = avLat; $('avLat').onchange = () => { avLat = Math.round(+$('avLat').value || 0); localStorage.setItem('avLat', avLat); };
   let micBusy = false, autoArmedFor = null, autoTimer = null;
   $('autoMic').checked = localStorage.getItem('autoMic') !== '0';
-  $('autoMic').onchange = () => { localStorage.setItem('autoMic', $('autoMic').checked ? '1' : '0'); if (!$('autoMic').checked) autoStop('Desactivado.'); };
+  $('autoMic').onchange = () => { localStorage.setItem('autoMic', $('autoMic').checked ? '1' : '0'); if (!$('autoMic').checked) autoStop(tr('Desactivado.')); };
   const clockNow = () => { const now = Date.now();
     if (syncer && syncer.state === 'locked' && !syncer.paused) return syncer.pos(now) + userOffset;
     const s = tvLast; if (s && (s.state === 'locked' || s.state === 'hidden') && !(s.media && s.media.kind === 'held')) return tvPosNow();
@@ -692,7 +946,7 @@ if (typeof window !== 'undefined') (function () {
   async function resyncOnce(win, msgEl, manual) {
     const cues = track && track.spa; if (!cues) throw new Error('nocues');
     const t0c = clockNow(), tc = Date.now();
-    const { env, t0 } = await recordEnv(20000, f => { msgEl.textContent = '🎧 Escuchando… ' + Math.min(100, Math.round(f * 100)) + ' %'; });
+    const { env, t0 } = await recordEnv(20000, f => { msgEl.textContent = tr('🎧 Escuchando… ') + Math.min(100, Math.round(f * 100)) + ' %'; });
     const center = t0c == null ? null : t0c + (t0 - tc);
     const r = (manual && center != null ? resyncManual : resync)(env, cues, center, center == null ? 1e9 : win);
     try { const hist = JSON.parse(localStorage.getItem('resyncHist') || '[]'); hist.unshift({ t: new Date().toLocaleTimeString(), manual: !!manual, ok: r.ok, why: r.why || '', r: +(r.r || 0).toFixed(2), r2: +(r.r2 || 0).toFixed(2), off: r.pos != null && center != null ? +((r.pos - center) / 1000).toFixed(1) : null, speech: Math.round((r.speech || 0) / 200), cands: (r.cands || []).map(c => ((c.pos - (center || 0)) / 1000).toFixed(1) + 's/' + c.r.toFixed(2) + (c.agA && c.agB ? '✓' : '✗')).join(' ') }); localStorage.setItem('resyncHist', JSON.stringify(hist.slice(0, 6))); showHist(); } catch (e) {}
@@ -700,8 +954,8 @@ if (typeof window !== 'undefined') (function () {
     return { r, t0, env, cues };
   }
   function askJump(at) { return new Promise(res => { const m = $('resyncMsg'); m.className = 'muted'; m.innerHTML = '';
-    m.append('Encontrado en ' + at + ', ¿saltar? ');
-    for (const [t, v] of [['Sí', true], ['No', false]]) { const b = document.createElement('button'); b.textContent = t; b.style.margin = '0 4px'; b.onclick = () => res(v); m.append(b); } }); }
+    m.append(tr('Encontrado en ') + at + tr(', ¿saltar? '));
+    for (const [t, v] of [[tr('Sí'), true], [tr('No'), false]]) { const b = document.createElement('button'); b.textContent = t; b.style.margin = '0 4px'; b.onclick = () => res(v); m.append(b); } }); }
   // v0.6.0: manual Resincronizar = speech recognition of ~20 s, words matched against the subtitle text.
   function srListen(lang, ms, msgEl) { return new Promise((res, rej) => {
     const r = new SR(), ph = new Map(); let done = false, t0 = Date.now(), errE = null;
@@ -709,7 +963,7 @@ if (typeof window !== 'undefined') (function () {
     r.onresult = ev => { const now = Date.now();
       for (let i = ev.resultIndex; i < ev.results.length; i++) { const k = i + '@' + gen; const o = ph.get(k) || { tw: now }; o.text = ev.results[i][0].transcript; o.fin = ev.results[i].isFinal; ph.set(k, o); }
       const left = Math.max(0, Math.round((ms - (now - t0)) / 1000));
-      msgEl.textContent = '🎧 Escuchando (' + lang + ', ' + left + ' s)… «' + [...ph.values()].map(x => x.text).join(' · ').slice(-90) + '»'; };
+      msgEl.textContent = tr('🎧 Escuchando (') + lang + ', ' + left + ' s)… «' + [...ph.values()].map(x => x.text).join(' · ').slice(-90) + '»'; };
     let gen = 0;
     r.onerror = e => { rlog('wr error ' + e.error); if (e.error === 'not-allowed' || e.error === 'service-not-allowed') errE = e.error; };
     r.onend = () => { if (!done && !errE && Date.now() - t0 < ms) { gen++; try { r.start(); return; } catch (e) {} } fin(); };
@@ -721,23 +975,23 @@ if (typeof window !== 'undefined') (function () {
   }); }
   const lastRes = { wall: 0, pos: 0 };
   function showHist() { let el = $('resyncHist'); if (!el) { el = document.createElement('pre'); el.id = 'resyncHist'; el.style.cssText = 'font-size:11px;white-space:pre-wrap;opacity:.7'; $('resyncMsg').after(el); }
-    const h = JSON.parse(localStorage.getItem('resyncHist') || '[]'); el.textContent = h.length ? 'Últimos intentos:\n' + h.map(x => x.t + ' ' + x.lang + ' ' + (x.ok ? 'OK ' : 'NO (' + x.why + ') ') + (x.off != null ? 'desfase ' + x.off + ' s ' : '') + '\n  oído: «' + x.heard + '»' + (x.line ? '\n  subtítulo: «' + x.line + '»' : '')).join('\n') : ''; }
+    const h = JSON.parse(localStorage.getItem('resyncHist') || '[]'); el.textContent = h.length ? tr('Últimos intentos:\n') + h.map(x => x.t + ' ' + x.lang + ' ' + (x.ok ? 'OK ' : 'NO (' + x.why + ') ') + (x.off != null ? tr('desfase ') + x.off + ' s ' : '') + tr('\n  oído: «') + x.heard + '»' + (x.line ? tr('\n  subtítulo: «') + x.line + '»' : '')).join('\n') : ''; }
   try { showHist(); } catch (e) {}
-  $('srLang').value = localStorage.getItem('srLang') || 'spa|es-ES';
+  $('srLang').value = localStorage.getItem('srLang') || 'spa|es-ES'; if (!$('srLang').value) $('srLang').value = 'spa|es-ES';
   $('srLang').onchange = () => localStorage.setItem('srLang', $('srLang').value);
   $('resyncBtn').onclick = async () => {
     const msg = $('resyncMsg'); msg.className = 'muted';
     if (micBusy) return; if (tvOff()) return offNote(msg);
-    if (!track) { msg.className = 'err'; msg.textContent = '❌ Carga primero los subtítulos en esta página (🔎 Subtítulos).'; return; }
-    if (!SR) { msg.className = 'err'; msg.textContent = '❌ Este navegador no tiene reconocimiento de voz. Usa Chrome.'; return; }
-    if (listening) { msg.className = 'err'; msg.textContent = '❌ Para antes «Dejar de escuchar».'; return; }
-    if (clockNow() == null) { msg.className = 'err'; msg.textContent = '❌ Pon antes el tiempo aproximado («Empezar aquí») o dale a reproducir.'; return; }
+    if (!track) { msg.className = 'err'; msg.textContent = tr('❌ Carga primero los subtítulos en esta página (🔎 Subtítulos).'); return; }
+    if (!SR) { msg.className = 'err'; msg.textContent = tr('❌ Este navegador no tiene reconocimiento de voz. Usa Chrome.'); return; }
+    if (listening) { msg.className = 'err'; msg.textContent = tr('❌ Para antes «Dejar de escuchar».'); return; }
+    if (clockNow() == null) { msg.className = 'err'; msg.textContent = tr('❌ Pon antes el tiempo aproximado («Empezar aquí») o dale a reproducir.'); return; }
     let [key, lang] = $('srLang').value.split('|');
     if (key === 'orig') lang = $('orig').value.split('|')[1];
     const cues = key === 'orig' ? track.orig : track.spa;
-    if (!cues || !cues.length) { msg.className = 'err'; msg.textContent = '❌ No hay pista de subtítulos ' + (key === 'orig' ? 'original' : 'en español') + ' cargada. Cambia «Idioma del audio».'; return; }
+    if (!cues || !cues.length) { msg.className = 'err'; msg.textContent = tr('❌ No hay pista de subtítulos ') + (key === 'orig' ? tr('original') : tr('en español')) + tr(' cargada. Cambia «Idioma del audio».'); return; }
     autoStop(); micBusy = true; $('resyncBtn').disabled = true;
-    msg.textContent = '🎧 Escuchando palabras 20 s (' + lang + ')… deja el móvil encendido cerca de la tele';
+    msg.textContent = tr('🎧 Escuchando palabras 20 s (') + lang + tr(')… deja el móvil encendido cerca de la tele');
     const c0 = clockNow(), w0 = Date.now(); rlog('wresync tap clock=' + fmt(c0) + ' ' + lang);
     let r = null, heard = '';
     try {
@@ -746,11 +1000,11 @@ if (typeof window !== 'undefined') (function () {
       const m = new Matcher(cues);
       r = wordResync(m, phrases, w => c0 + (w - w0));
       rlog('wresync ok=' + r.ok + ' ' + r.why + ' off=' + (r.off != null ? Math.round(r.off) : '-') + ' heard=' + heard + ' ests=' + JSON.stringify(r.ests.map(e => [Math.round(e.off), e.matched, +e.score.toFixed(1), +e.margin.toFixed(1)])));
-      if (r.ok && Math.abs(r.off) > 60000 && !(await askJump(fmt(r.pos + (Date.now() - r.tw))))) { msg.className = 'muted'; msg.textContent = 'Vale, no salto. Tiempo sin cambios.'; r.why = 'salto rechazado'; r.ok = false; return; }
-      if (!r.ok) { msg.className = 'err'; msg.textContent = '🤷 No seguro (' + r.why + '): dejo el tiempo como estaba. Oído: «' + (heard || 'nada') + '»'; return; }
+      if (r.ok && Math.abs(r.off) > 60000 && !(await askJump(fmt(r.pos + (Date.now() - r.tw))))) { msg.className = 'muted'; msg.textContent = tr('Vale, no salto. Tiempo sin cambios.'); r.why = tr('salto rechazado'); r.ok = false; return; }
+      if (!r.ok) { msg.className = 'err'; msg.textContent = tr('🤷 No seguro (') + r.why + tr('): dejo el tiempo como estaba. Oído: «') + (heard || tr('nada')) + '»'; return; }
       const d = await applyAudioPos(r.pos, r.tw);
-      msg.className = 'ok'; msg.textContent = '✔ Ajustado' + (d != null ? ' ' + (d >= 0 ? '+' : '−') + Math.abs(d / 1000).toFixed(1).replace('.', ',') + ' s' : '') + ' (' + r.n + ' frase' + (r.n > 1 ? 's' : '') + ' coinciden: «' + r.best.line + '»).';
-    } catch (e) { r = { ok: false, why: e.message }; msg.className = 'err'; msg.textContent = e.message === 'srdeny' ? '❌ Chrome no deja usar el micrófono para reconocer voz. Candado → Permisos → Micrófono.' : '❌ Error del reconocimiento de voz: ' + (e.name || e.message); rlog('wresync fail ' + e.message); }
+      msg.className = 'ok'; msg.textContent = tr('✔ Ajustado') + (d != null ? ' ' + (d >= 0 ? '+' : '−') + Math.abs(d / 1000).toFixed(1).replace('.', ',') + ' s' : '') + ' (' + r.n + tr(' frase') + (r.n > 1 ? 's' : '') + tr(' coinciden: «') + r.best.line + '»).';
+    } catch (e) { r = { ok: false, why: e.message }; msg.className = 'err'; msg.textContent = e.message === 'srdeny' ? tr('❌ Chrome no deja usar el micrófono para reconocer voz. Candado → Permisos → Micrófono.') : tr('❌ Error del reconocimiento de voz: ') + (e.name || e.message); rlog('wresync fail ' + e.message); }
     finally { micBusy = false; $('resyncBtn').disabled = false;
       try { const b = r && (r.best || (r.ests && r.ests.slice().sort((x, y) => y.score - x.score)[0]));
         const hist = JSON.parse(localStorage.getItem('resyncHist') || '[]'); hist.unshift({ t: new Date().toLocaleTimeString(), lang, ok: !!(r && r.ok), why: r ? r.why : '', off: r && r.ok ? +(r.off / 1000).toFixed(1) : b ? +(b.off / 1000).toFixed(1) : null, heard: heard.slice(0, 160), line: b ? b.line : '' }); localStorage.setItem('resyncHist', JSON.stringify(hist.slice(0, 6))); showHist(); } catch (e) {} }
@@ -766,7 +1020,7 @@ if (typeof window !== 'undefined') (function () {
     const step = async () => {
       autoTimer = null; const msg = $('resyncMsg');
       if (track !== t || !$('autoMic').checked || tvOff()) return;
-      if (Date.now() > until) { msg.className = 'muted'; msg.textContent = 'Ajuste automático: no he oído diálogo claro; el micro está apagado. Usa 🎧 Resincronizar si hace falta.'; return; }
+      if (Date.now() > until) { msg.className = 'muted'; msg.textContent = tr('Ajuste automático: no he oído diálogo claro; el micro está apagado. Usa 🎧 Resincronizar si hace falta.'); return; }
       if (micBusy || document.hidden || clockNow() == null) { autoTimer = setTimeout(step, 3000); return; }
       micBusy = true;
       try {
@@ -775,13 +1029,13 @@ if (typeof window !== 'undefined') (function () {
           const off = r.pos - t0; // film ms minus wall ms -> comparable between chunks
           if (syncer && syncer.manual || (last != null && Math.abs(off - last) < 700)) {
             const d = await applyAudioPos(r.pos, t0); msg.className = 'ok';
-            msg.textContent = '✔ Ajustado al empezar' + (d != null ? ' (' + (d >= 0 ? '+' : '−') + Math.abs(d / 1000).toFixed(1).replace('.', ',') + ' s)' : '') + '. Micro apagado.'; return;
+            msg.textContent = tr('✔ Ajustado al empezar') + (d != null ? ' (' + (d >= 0 ? '+' : '−') + Math.abs(d / 1000).toFixed(1).replace('.', ',') + ' s)' : '') + tr('. Micro apagado.'); return;
           }
           last = off;
         }
-        msg.className = 'muted'; msg.textContent = '🎧 Ajuste automático: sigo escuchando…';
-      } catch (e) { if (e.message === 'hidden' && Date.now() < until) { micBusy = false; msg.className = 'muted'; msg.textContent = '🎧 Ajuste automático en espera (pantalla del móvil apagada)…'; autoTimer = setTimeout(step, 3000); return; }
-        msg.className = 'err'; msg.textContent = '❌ Ajuste automático sin micro: ' + (e.name || e.message); return; }
+        msg.className = 'muted'; msg.textContent = tr('🎧 Ajuste automático: sigo escuchando…');
+      } catch (e) { if (e.message === 'hidden' && Date.now() < until) { micBusy = false; msg.className = 'muted'; msg.textContent = tr('🎧 Ajuste automático en espera (pantalla del móvil apagada)…'); autoTimer = setTimeout(step, 3000); return; }
+        msg.className = 'err'; msg.textContent = tr('❌ Ajuste automático sin micro: ') + (e.name || e.message); return; }
       finally { micBusy = false; }
       autoTimer = setTimeout(step, 500);
     };
@@ -812,35 +1066,35 @@ if (typeof window !== 'undefined') (function () {
     const msg = $('manualMsg'); msg.className = 'muted';
     if (tvOff() && !track) return offNote(msg);
     const ms = parseT($('manualT').value || '');
-    if (ms == null) { msg.className = 'err'; msg.textContent = '❌ No entiendo «' + $('manualT').value + '». Escribe el tiempo del reproductor con dos puntos, puntos o solo números, p. ej. 23:15, 1:05:30, 56.46 o 10530.'; return; }
+    if (ms == null) { msg.className = 'err'; msg.textContent = tr('❌ No entiendo «') + $('manualT').value + tr('». Escribe el tiempo del reproductor con dos puntos, puntos o solo números, p. ej. 23:15, 1:05:30, 56.46 o 10530.'); return; }
     if (userOffset) { rlog('manual time: drop offset ' + userOffset); userOffset = 0; localStorage.removeItem('offset'); $('offsetTxt').textContent = offTxt(); } // v0.5.6: typed time is absolute, old +/- correction made it show 70 s off
     if (!track || !syncer) { // v0.4.3: page reloaded, the TV still holds the track -> set the TV's own clock (like Pausa in v0.4.2)
-      if (!tvLast || !tvLast.cues) { msg.className = 'err'; msg.textContent = '❌ Primero busca y carga los subtítulos (🔎 Subtítulos).'; return; }
-      msg.textContent = 'Enviando a la tele…'; tvPausedPos = null; rlog('tv manual ' + $('manualT').value + ' -> ' + fmt(ms));
+      if (!tvLast || !tvLast.cues) { msg.className = 'err'; msg.textContent = tr('❌ Primero busca y carga los subtítulos (🔎 Subtítulos).'); return; }
+      msg.textContent = tr('Enviando a la tele…'); tvPausedPos = null; rlog('tv manual ' + $('manualT').value + ' -> ' + fmt(ms));
       await tvSync(tvHidden ? 'hidden' : 'locked', ms + userOffset, true);
       const r = tvLast;
-      if (!r || r.state === undefined) { msg.className = 'err'; msg.textContent = '❌ No llego a la tele. Comprueba que la app está abierta en la tele y recarga esta página.'; return; }
-      if (!r.overlayAlive) { msg.className = 'err'; msg.textContent = '❌ La tele recibió la orden pero la app no está dibujando. Abre «Subtítulos TV» en la tele y pulsa Iniciar.'; return; }
-      if (r.state !== 'locked' && r.state !== 'hidden') { msg.className = 'err'; msg.textContent = '❌ La tele no ha arrancado (estado ' + r.state + ').'; return; }
-      msg.className = 'ok'; msg.textContent = r.media && r.media.kind === 'held' && r.media.autoPause ? '✔ Listo en ' + fmt(r.pos) + '. ' + r.media.app + ' está en pausa: los subtítulos arrancan cuando le des a reproducir.'
-        : r.hiddenByMedia ? '✔ Listo en ' + fmt(r.pos) + '. Los subtítulos salen cuando vuelvas a reproducir en ' + ((r.media && (r.media.srcApp || r.media.app)) || 'la app') + '.'
-        : '✔ La tele va en ' + fmt(r.pos) + ' y sigue sola aunque bloquees el móvil.';
+      if (!r || r.state === undefined) { msg.className = 'err'; msg.textContent = tr('❌ No llego a la tele. Comprueba que la app está abierta en la tele y recarga esta página.'); return; }
+      if (!r.overlayAlive) { msg.className = 'err'; msg.textContent = tr('❌ La tele recibió la orden pero la app no está dibujando. Abre «Subtítulos TV» en la tele y pulsa Iniciar.'); return; }
+      if (r.state !== 'locked' && r.state !== 'hidden') { msg.className = 'err'; msg.textContent = tr('❌ La tele no ha arrancado (estado ') + r.state + ').'; return; }
+      msg.className = 'ok'; msg.textContent = r.media && r.media.kind === 'held' && r.media.autoPause ? tr('✔ Listo en ') + fmt(r.pos) + '. ' + r.media.app + tr(' está en pausa: los subtítulos arrancan cuando le des a reproducir.')
+        : r.hiddenByMedia ? tr('✔ Listo en ') + fmt(r.pos) + tr('. Los subtítulos salen cuando vuelvas a reproducir en ') + ((r.media && (r.media.srcApp || r.media.app)) || tr('la app')) + '.'
+        : tr('✔ La tele va en ') + fmt(r.pos) + tr(' y sigue sola aunque bloquees el móvil.');
       return;
     }
     syncer.manualLock(ms, Date.now()); rlog('manual lock ' + $('manualT').value + ' -> ' + fmt(ms)); render();
-    msg.textContent = 'Enviando a la tele…';
+    msg.textContent = tr('Enviando a la tele…');
     const syncMsg = () => ({ type: 'sync', manual: true, state: tvHidden ? 'hidden' : 'locked', pos: Math.round(syncer.pos(Date.now()) + userOffset), at: Math.round(Date.now() + serverOffset), off: userOffset });
     try {
       let r = await sendChecked(syncMsg());
-      if (!r.cues || r.cues !== track.spa.length) { msg.textContent = 'La tele no tenía los subtítulos; reenviando…'; await sendCues(); r = await sendChecked(syncMsg()); }
+      if (!r.cues || r.cues !== track.spa.length) { msg.textContent = tr('La tele no tenía los subtítulos; reenviando…'); await sendCues(); r = await sendChecked(syncMsg()); }
       if (r.held !== undefined) { tvHeld = r.held; tvEpoch = r.epoch; } // manual time refers to "now": nothing to subtract
       lastSent = Date.now();
-      if (r.state === undefined) { msg.className = 'ok'; msg.textContent = '✔ Enviado a la tele (empieza en ' + fmt(ms) + ').'; return; }
-      if (!r.overlayAlive) { msg.className = 'err'; msg.textContent = '❌ La tele recibió la orden pero la app no está dibujando. Abre «Subtítulos TV» en la tele y pulsa Iniciar.'; return; }
-      if (r.state !== 'locked') { msg.className = 'err'; msg.textContent = '❌ La tele no ha arrancado (estado ' + r.state + ').'; return; }
-      if (r.media && r.media.kind === 'held' && r.media.autoPause) { msg.className = 'ok'; msg.textContent = '✔ Listo en ' + fmt(r.pos) + '. ' + r.media.app + ' está en pausa: los subtítulos arrancan cuando le des a reproducir.'; showTv(r); return; }
-      msg.className = 'ok'; msg.textContent = '✔ La tele va en ' + fmt(r.pos) + ' y sigue sola aunque bloquees el móvil.'; showTv(r);
-    } catch (e) { msg.className = 'err'; msg.textContent = '❌ No llego a la tele: ' + e.message + '. Comprueba que la app está abierta en la tele y recarga esta página.'; rlog('manual send failed ' + e.message); }
+      if (r.state === undefined) { msg.className = 'ok'; msg.textContent = tr('✔ Enviado a la tele (empieza en ') + fmt(ms) + ').'; return; }
+      if (!r.overlayAlive) { msg.className = 'err'; msg.textContent = tr('❌ La tele recibió la orden pero la app no está dibujando. Abre «Subtítulos TV» en la tele y pulsa Iniciar.'); return; }
+      if (r.state !== 'locked') { msg.className = 'err'; msg.textContent = tr('❌ La tele no ha arrancado (estado ') + r.state + ').'; return; }
+      if (r.media && r.media.kind === 'held' && r.media.autoPause) { msg.className = 'ok'; msg.textContent = tr('✔ Listo en ') + fmt(r.pos) + '. ' + r.media.app + tr(' está en pausa: los subtítulos arrancan cuando le des a reproducir.'); showTv(r); return; }
+      msg.className = 'ok'; msg.textContent = tr('✔ La tele va en ') + fmt(r.pos) + tr(' y sigue sola aunque bloquees el móvil.'); showTv(r);
+    } catch (e) { msg.className = 'err'; msg.textContent = tr('❌ No llego a la tele: ') + e.message + tr('. Comprueba que la app está abierta en la tele y recarga esta página.'); rlog('manual send failed ' + e.message); }
   };
   $('manualT').addEventListener('keydown', e => { if (e.key === 'Enter') $('manualBtn').click(); });
   $('listenBtn').onclick = () => listening ? stopListening() : startListening();
@@ -852,13 +1106,13 @@ if (typeof window !== 'undefined') (function () {
   let tvPausedPos = null; // position kept while paused without a syncer
   const isPaused = () => !!(syncer && syncer.paused) || !!(tvLast && tvLast.state === 'paused');
   function showPause() {
-    const on = isPaused(); setBtn($('pauseBtn'), on ? '▶' : '⏸', on ? 'Seguir' : 'Pausa'); $('pauseBtn').classList.toggle('on', on);
+    const on = isPaused(); setBtn($('pauseBtn'), on ? '▶' : '⏸', on ? tr('Seguir') : tr('Pausa')); $('pauseBtn').classList.toggle('on', on);
   }
   async function tvSync(state, pos, manual) {
     const msg = { type: 'sync', manual: !!manual, state, pos: Math.round(pos), at: Math.round(Date.now() + serverOffset), off: userOffset };
     const t0 = Date.now();
     try { const r = await sendChecked(msg); if (r && r.state !== undefined) { tvLast = r; tvSeenAt = (t0 + Date.now()) / 2; if (r.held !== undefined) { tvHeld = r.held; tvEpoch = r.epoch; } showTv(r); } }
-    catch (e) { $('tvnow').className = 'err'; $('tvnow').textContent = '❌ No llego a la tele: ' + e.message; }
+    catch (e) { $('tvnow').className = 'err'; $('tvnow').textContent = tr('❌ No llego a la tele: ') + e.message; }
     lastSent = Date.now(); showPause(); showNow();
   }
   $('pauseBtn').onclick = async () => {
@@ -871,12 +1125,12 @@ if (typeof window !== 'undefined') (function () {
       showPause(); render(); return;
     }
     // no track on this page (reloaded) or not synced here: act on the TV's own clock
-    if (!tvLast || !tvLast.cues) { $('tvnow').className = 'err'; $('tvnow').textContent = 'La tele no tiene subtítulos cargados: búscalos en «🔎 Subtítulos».'; return; }
+    if (!tvLast || !tvLast.cues) { $('tvnow').className = 'err'; $('tvnow').textContent = tr('La tele no tiene subtítulos cargados: búscalos en «🔎 Subtítulos».'); return; }
     if (tvLast.state === 'paused') { const p = tvPausedPos != null ? tvPausedPos : tvLast.pos; tvPausedPos = null; rlog('tv resume at ' + fmt(p)); await tvSync(tvHidden ? 'hidden' : 'locked', p, true); }
     else if (tvLast.state === 'locked' || tvLast.state === 'hidden') { const p = tvPosNow(); tvPausedPos = p; rlog('tv pause at ' + fmt(p)); await tvSync('paused', p, true); }
-    else { $('tvnow').className = 'err'; $('tvnow').textContent = 'La tele aún no está sincronizada: pon el tiempo en «Empezar en este tiempo» (⚙️ Ajustes).'; }
+    else { $('tvnow').className = 'err'; $('tvnow').textContent = tr('La tele aún no está sincronizada: pon el tiempo en «Empezar en este tiempo» (⚙️ Ajustes).'); }
   };
-  $('hideBtn').onclick = () => { if (tvOff()) return offNote(); tvHidden = !tvHidden; $('hideBtn').textContent = tvHidden ? '👁 Mostrar' : '🙈 Ocultar';
+  $('hideBtn').onclick = () => { if (tvOff()) return offNote(); tvHidden = !tvHidden; $('hideBtn').textContent = tvHidden ? tr('👁 Mostrar') : tr('🙈 Ocultar');
     if (syncer) pushSync(); else if (tvLast && (tvLast.state === 'locked' || tvLast.state === 'hidden')) tvSync(tvHidden ? 'hidden' : 'locked', tvPosNow(), false); };
   const adj = d => { if (tvOff()) return offNote(); userOffset += d; localStorage.setItem('offset', userOffset); $('offsetTxt').textContent = offTxt();
     if (syncer) { pushSync(); return; }
@@ -893,5 +1147,5 @@ if (typeof window !== 'undefined') (function () {
   $('autoPause').onchange = sendMediaOpts; $('autoSync').onchange = sendMediaOpts;
   // v0.6.1: after a page reload, restore the track the TV is showing so Resincronizar works
   try { const d = JSON.parse(localStorage.getItem('lastTrack') || 'null'); if (d && d.spa) { useTrack(d, true); track.restored = true; rlog('track restored ' + d.title); } } catch (e) {}
-  $('testBtn').onclick = () => tvOff() ? offNote() : send({ type: 'text', text: 'Prueba: así se verán los subtítulos en la tele.', ms: 5000 });
+  $('testBtn').onclick = () => tvOff() ? offNote() : send({ type: 'text', text: tr('Prueba: así se verán los subtítulos en la tele.'), ms: 5000 });
 })();
