@@ -8,6 +8,14 @@ Muestra subtítulos externos (.srt) **encima de cualquier app** de tu Android TV
 
 La página del móvil está en **español e inglés** (botón 🇪🇸 ES / 🇬🇧 EN arriba) y la app de la tele sale en el idioma del sistema.
 
+### 🎬 Demo
+
+
+
+https://github.com/user-attachments/assets/c5aa5a96-2827-4387-97f4-70cf30c3b017
+
+
+
 ## Dispositivos compatibles
 - Teles y reproductores con **Android TV o Google TV, Android 8.0 o superior** (Chromecast con Google TV, Fire TV no probado).
 - Un móvil (Android o iPhone) con navegador, **en la misma red Wi‑Fi** que la tele.
